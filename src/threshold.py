@@ -126,7 +126,7 @@ def plot_threshold_sweep(results: pd.DataFrame, output_path: str) -> str:
 
 
 def run_sweep(model_path: str = "artifacts/random_forest_v2.joblib",
-              candidate_file: str = "output/candidate_pairs_val_singletons.tsv",
+              candidate_file: str = "output/candidate_pairs_val.tsv",
               plot_path: str = "output/threshold_sweep_rf_v2.png",
               results_path: str = "output/threshold_sweep_rf_v2.tsv") -> pd.DataFrame:
     artifact_path = os.path.join(ROOT, model_path)
@@ -177,7 +177,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", default="artifacts/random_forest_v2.joblib",
                         help="Trained model artifact (default: selected Random Forest v2)")
-    parser.add_argument("--candidate-file", default="output/candidate_pairs_val_singletons.tsv",
+    parser.add_argument("--candidate-file", default="output/candidate_pairs_val.tsv",
                         help="Validation candidates; include singleton S1 rows")
     parser.add_argument("--plot", default="output/threshold_sweep_rf_v2.png")
     parser.add_argument("--results", default="output/threshold_sweep_rf_v2.tsv",

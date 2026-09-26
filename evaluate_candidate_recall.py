@@ -43,7 +43,7 @@ def evaluate_candidate_recall(
     random_state: int = 42,
     output_path: str = "output/candidate_pairs_val.tsv",
     top_k_tfidf: int = 20,
-    include_singletons: bool = False,
+    include_singletons: bool = True,
 ) -> float:
     t_start = time.time()
     print("=" * 70)
@@ -207,8 +207,13 @@ if __name__ == "__main__":
     parser.add_argument("--sample", type=int, default=2500, help="Number of validation S1 entities to evaluate (default: 2500)")
     parser.add_argument("--output", type=str, default="output/candidate_pairs_val.tsv", help="Path to save candidate pairs")
     parser.add_argument("--top_k_tfidf", type=int, default=20, help="Top-k for TF-IDF char n-grams (default: 20)")
-    parser.add_argument("--include-singletons", action="store_true",
-                        help="Include validation S1 entities with no known matches in the sample")
+    singleton_group = parser.add_mutually_exclusive_group()
+    singleton_group.add_argument("--include-singletons", dest="include_singletons",
+                                 action="store_true", default=True,
+                                 help="Include singletons (canonical validation cohort; default)")
+    singleton_group.add_argument("--matched-only", dest="include_singletons",
+                                 action="store_false",
+                                 help="Legacy matched-only sample; not canonical for model comparisons")
     args = parser.parse_args()
 
     evaluate_candidate_recall(

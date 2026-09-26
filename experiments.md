@@ -12,6 +12,9 @@ Log every change and experiment here. Track metrics rigorously to guide pipeline
 | Logistic Regression v1 threshold sweep (0.95 grid maximum) | 95.4174% | 0.922110 | 0.939610 | 0.899198 | 2,500 S1 validation sample including 152 singletons; same-model threshold 0.50 baseline F0.5=0.821195, precision=0.813734, recall=0.918306. LR-only sweep; superseded for selected model by RF v2 sweep. | 2026-09-26 |
 | Random Forest v2 threshold sweep (0.75 maximum) | 95.4174% | 0.951503 | 0.971190 | 0.913899 | 2,500 S1 validation sample including 152 singletons; 22 thresholds from 0.30–0.99. Threshold 0.50 baseline F0.5=0.947164, precision=0.959219, recall=0.931150; near-plateau from 0.65–0.75. Inference default remains 0.5 pending Phase 4 threshold selection. | 2026-09-26 |
 | Random Forest v2 threshold locked at 0.70 | 95.4174% | 0.951156 | 0.968562 | 0.919385 | Chosen from 0.65–0.75 plateau: within 0.000347 F0.5 of 0.75 maximum while retaining more recall. Phase 4 baseline. | 2026-09-26 |
+| Phase 4 error-analysis baseline, canonical candidate_pairs_val.tsv | 95.4174% | 0.951156 | 0.968562 | 0.919385 | RF v2, threshold 0.70, 2,500 S1s including 152 singletons; reused saved canonical candidates (no blocking rerun). 173 FP, 297 model FN, 398 blocking-miss pairs. | 2026-09-26 |
+| Archived matched-only candidate sample (noncanonical) | 95.2958% | 0.951749 | 0.971997 | 0.915962 | RF v2, threshold 0.70, 2,500 matched S1s and zero singletons; 9,162 truth edges. Archived at `output/archive/candidate_pairs_val_matched_only_legacy.tsv`; do not use for validation comparisons. | 2026-09-26 |
+| RF v2 feature trial: numeric overlap despite weak name similarity | 95.4174% | 0.950745 | 0.968385 | 0.918572 | Rejected and reverted: F0.5 change -0.000411 versus baseline 0.951156. Same canonical 2,500-S1 validation set (152 singletons), seed-42 training sample, and threshold 0.70. | 2026-09-27 |
 
 ## Comparison against the pre-correction run
 
