@@ -16,7 +16,7 @@ yourself (or ask the AI to draft the update, then review it).
 
 ## Phase 0 — Setup & EDA
 ```
-Set up the repo structure from Architecture.md exactly. Then write
+I have already set up the repo structure but i didn't put up the structure similar to Architecture.md, just dont delete any files which are not there in Architecture.md just add on top to replicate the repo structure as much as you can from Architecture.md exactly, and update the Architecture.md with the right repo structure. Then write
 notebooks/01_eda.ipynb that:
 1. Loads all 4 TSVs with sep="\t", prints shape/dtypes/null counts for each
 2. Prints country.value_counts() on train and test separately, confirm France

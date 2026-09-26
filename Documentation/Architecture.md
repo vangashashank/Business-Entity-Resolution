@@ -67,16 +67,15 @@ train/test *.tsv (sep="\t")
 
 ```
 amazon-ml-challenge-2026/
-├── dataset/
-│   ├── train/  (train_source1.tsv, train_source2.tsv, train_source3.tsv,
-│   │            train_ground_truth.tsv)
-│   ├── test/   (test_source1.tsv, test_source2.tsv, test_source3.tsv)
-│   └── val_split_ids.txt          # committed once, never regenerated
+├── dataset/                        # Junction/symlink to student_resource/dataset
+│   ├── train/                      # (train_source1.tsv, train_source2.tsv, train_source3.tsv, train_ground_truth.tsv)
+│   ├── test/                       # (test_source1.tsv, test_source2.tsv, test_source3.tsv)
+│   └── val_split_ids.txt           # committed once, never regenerated
 ├── notebooks/
 │   └── 01_eda.ipynb
 ├── colab_notebooks/                # anything that runs on Colab lives here
 │   └── 02_embeddings.ipynb         # only if embeddings are needed
-├── src/
+├── src/                            # Pipeline source code (linked with code/bussiness_entity_resolution/src)
 │   ├── preprocessing.py
 │   ├── blocking.py
 │   ├── features.py
@@ -90,10 +89,29 @@ amazon-ml-challenge-2026/
 ├── output/
 │   ├── matching_results.tsv
 │   └── candidate_pairs.tsv
-├── utils/
+├── utils/                          # Junction/symlink to student_resource/utils
 │   └── validate_submission.py      # provided by organizers
+├── student_resource/               # Organizer-provided resource folder
+│   ├── dataset/                    # Raw train and test TSV files
+│   ├── utils/                      # validate_submission.py
+│   └── README.md
+├── code/                           # Deliverable package scaffolding
+│   └── bussiness_entity_resolution/
+│       ├── src/
+│       ├── README.md
+│       └── requirements.txt
+├── Documentation/                  # Project specifications and guidelines
+│   ├── PRD.md
+│   ├── Architecture.md
+│   ├── RULES.md
+│   ├── memory.md                   # Single source of truth across sessions
+│   ├── design.md
+│   ├── Phases.md
+│   ├── Plan.md
+│   └── PBST.excalidraw
+├── Documentation_template.md       # Final methodology write-up template
 ├── experiments.md                  # change, recall, F0.5, P, R, notes, date
-├── memory.md
+├── memory.md                       # Hardlinked to Documentation/memory.md
 ├── requirements.txt
 └── README.md
 ```

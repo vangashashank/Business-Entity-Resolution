@@ -1,1 +1,12 @@
 student_resource/dataset/
+dataset/train/
+dataset/test/
+dataset/*.tsv
+!dataset/val_split_ids.txt
+output/*.tsv
+artifacts/
+*.pyc
+__pycache__/
+.ipynb_checkpoints/
+*.DS_Store
+.DS_Store
