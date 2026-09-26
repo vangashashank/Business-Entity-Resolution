@@ -93,7 +93,9 @@ def generate_tfidf_candidates(
     X_s1 = vectorizer.transform(s1_names)
     
     print(f"  [TF-IDF] Fitting NearestNeighbors (top_k={top_k}, metric='cosine')...")
-    nn = NearestNeighbors(n_neighbors=min(top_k, len(pool_names)), metric="cosine", n_jobs=-1)
+    # A single worker also works in restricted environments where joblib cannot
+    # create worker threads/processes; sparse cosine queries remain practical.
+    nn = NearestNeighbors(n_neighbors=min(top_k, len(pool_names)), metric="cosine", n_jobs=1)
     nn.fit(X_pool)
     
     pool_ids_arr = np.array(pool_ids)
@@ -215,26 +217,73 @@ def union_and_dedupe_candidates(
     addr_cands: Dict[str, Set[str]],
     phonetic_cands: Dict[str, Set[str]],
     max_candidates_per_entity: Optional[int] = 200,
+    min_candidates_per_strategy: int = 60,
 ) -> Dict[str, List[str]]:
     """
-    Unions candidates from all 3 strategies and dedupes per S1 entity.
-    Guarantees every S1 ID is present in the output dictionary.
-    Excludes self-matches (S1 IDs).
+    Union candidates while reserving a minimum share for each strategy.
+
+    Candidate generators currently return sets, so their results are sorted to
+    make quota selection deterministic. Each strategy contributes up to
+    ``min_candidates_per_strategy`` candidates before overflow is allocated
+    round-robin across strategies. If the configured total cap is too small to
+    fit three full floors, the floor is reduced evenly to fit.
+
+    Guarantees every S1 ID is present in the output dictionary and excludes
+    self-matches (S1 IDs).
     """
+    if min_candidates_per_strategy < 0:
+        raise ValueError("min_candidates_per_strategy must be non-negative")
+
+    strategies = (tfidf_cands, addr_cands, phonetic_cands)
+    if max_candidates_per_entity:
+        per_strategy_floor = min(
+            min_candidates_per_strategy,
+            max_candidates_per_entity // len(strategies),
+        )
+        capacity = max_candidates_per_entity
+    else:
+        per_strategy_floor = min_candidates_per_strategy
+        capacity = None
+
     combined: Dict[str, List[str]] = {}
     for sid in s1_ids:
-        cset = set()
-        cset.update(tfidf_cands.get(sid, set()))
-        cset.update(addr_cands.get(sid, set()))
-        cset.update(phonetic_cands.get(sid, set()))
-        # Remove self-matches (e.g. any S1 IDs if accidentally present)
-        cset = {cid for cid in cset if not cid.startswith("S1-") and cid != sid}
-        
-        # Sort for deterministic output
-        cand_list = sorted(cset)
-        if max_candidates_per_entity and len(cand_list) > max_candidates_per_entity:
-            cand_list = cand_list[:max_candidates_per_entity]
-        combined[sid] = cand_list
+        strategy_lists = []
+        for strategy in strategies:
+            candidates = strategy.get(sid, set())
+            strategy_lists.append(sorted(
+                cid for cid in candidates
+                if not cid.startswith("S1-") and cid != sid
+            ))
+
+        selected = set()
+        for candidates in strategy_lists:
+            selected.update(candidates[:per_strategy_floor])
+
+        # Allocate remaining slots in rounds so no strategy monopolizes the
+        # overflow just because its candidate IDs sort earlier.
+        overflow = [
+            [cid for cid in candidates if cid not in selected]
+            for candidates in strategy_lists
+        ]
+        cursor = [0] * len(overflow)
+        while capacity is None or len(selected) < capacity:
+            added = False
+            for i, candidates in enumerate(overflow):
+                while cursor[i] < len(candidates):
+                    cid = candidates[cursor[i]]
+                    cursor[i] += 1
+                    if cid not in selected:
+                        selected.add(cid)
+                        added = True
+                        break
+                if capacity is not None and len(selected) >= capacity:
+                    break
+            if not added:
+                break
+
+        # Stable serialized output; quota decisions were made independently per
+        # strategy before this final presentation sort.
+        combined[sid] = sorted(selected)
         
     return combined
 

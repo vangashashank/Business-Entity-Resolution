@@ -33,7 +33,7 @@ an AI pair-programmer.** So:
 - **Secondary (internal):** candidate recall out of blocking (target ≥95% before
   investing more time in modeling — a model can't recover a match blocking never
   generated).
-- **Gate metric:** `utils/validate_submission.py` returns `PASS` before every upload.
+- **Gate metric:** `student_resource/utils/validate_submission.py` returns `PASS` before every upload.
 
 ## 5. Functional Requirements
 - Pipeline produces exactly two TSVs: `output/matching_results.tsv` (scored) and

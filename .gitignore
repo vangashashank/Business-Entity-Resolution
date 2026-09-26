@@ -1,12 +1,18 @@
-student_resource/dataset/
-dataset/train/
-dataset/test/
-dataset/*.tsv
-!dataset/val_split_ids.txt
+# Raw TSV dataset files (large files)
+student_resource/dataset/train/
+student_resource/dataset/test/
+student_resource/dataset/*.tsv
+
+# Explicitly keep locked validation split
+!student_resource/dataset/val_split_ids.txt
+
+# Generated output and model artifacts
 output/*.tsv
 artifacts/
-*.pyc
+
+# Python / IDE cache files
 __pycache__/
+*.pyc
 .ipynb_checkpoints/
 *.DS_Store
 .DS_Store

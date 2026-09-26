@@ -2,6 +2,26 @@
 
 Log every change and experiment here. Track metrics rigorously to guide pipeline decisions.
 
-| Date | Experiment / Change | Blocking Recall | Val F0.5 | Precision | Recall | Notes |
-|---|---|---|---|---|---|---|
-| 2026-09-26 | Phase 0 Setup & EDA | - | - | - | - | Scaffolding created; initial EDA and stratified validation split. |
+| change | candidate_recall | val_F0.5 | precision | recall | notes | date |
+|---|---:|---:|---:|---:|---|---|
+| Setup / EDA | - | - | - | - | Repository scaffolding and stratified split setup. | 2026-09-26 |
+| Logistic Regression (feature set v1) | 95.4174% | 0.821195 | 0.813734 | 0.918306 | Similarity metric changed from fuzz.ratio to normalized Levenshtein; threshold=0.5; 2,500 held-out S1 entities, including 152 singletons. | 2026-09-26 |
+| Logistic Regression (feature set v2) | 95.4174% | 0.851902 | 0.846726 | 0.924581 | Similarity metric changed from fuzz.ratio to normalized Levenshtein; threshold=0.5; 2,500 held-out S1 entities, including 152 singletons. | 2026-09-26 |
+| Random Forest (feature set v2) | 95.4174% | 0.947164 | 0.959219 | 0.931150 | Similarity metric changed from fuzz.ratio to normalized Levenshtein; threshold=0.5; 2,500 held-out S1 entities, including 152 singletons. | 2026-09-26 |
+| XGBoost (feature set v2) | 95.4174% | 0.945500 | 0.955095 | 0.936193 | Similarity metric changed from fuzz.ratio to normalized Levenshtein; threshold=0.5; 2,500 held-out S1 entities, including 152 singletons. | 2026-09-26 |
+| Logistic Regression v1 threshold sweep (0.95 grid maximum) | 95.4174% | 0.922110 | 0.939610 | 0.899198 | 2,500 S1 validation sample including 152 singletons; same-model threshold 0.50 baseline F0.5=0.821195, precision=0.813734, recall=0.918306. LR-only sweep; superseded for selected model by RF v2 sweep. | 2026-09-26 |
+| Random Forest v2 threshold sweep (0.75 maximum) | 95.4174% | 0.951503 | 0.971190 | 0.913899 | 2,500 S1 validation sample including 152 singletons; 22 thresholds from 0.30–0.99. Threshold 0.50 baseline F0.5=0.947164, precision=0.959219, recall=0.931150; near-plateau from 0.65–0.75. Inference default remains 0.5 pending Phase 4 threshold selection. | 2026-09-26 |
+| Random Forest v2 threshold locked at 0.70 | 95.4174% | 0.951156 | 0.968562 | 0.919385 | Chosen from 0.65–0.75 plateau: within 0.000347 F0.5 of 0.75 maximum while retaining more recall. Phase 4 baseline. | 2026-09-26 |
+
+## Comparison against the pre-correction run
+
+The historical rows below used RapidFuzz `fuzz.ratio` (Indel similarity) and a matched-only validation sample. Corrected rows use normalized Levenshtein and include 152 singletons in the 2,500-entity validation sample. The matched-only corrected metrics are shown as an intermediate reference; that run used the prior 2,500 matched-entity validation sample. Consequently, the historical-to-final delta combines the feature correction and validation-sample/singleton scope change; it does not isolate a singleton-only effect.
+
+| model | old F0.5 (pre-correction) | corrected F0.5 (matched-only) | corrected F0.5 (including singletons) | old-to-final delta |
+|---|---:|---:|---:|---:|
+| Logistic Regression v1 | 0.863669 | 0.833041 | 0.821195 | -0.042474 |
+| Logistic Regression v2 | 0.881332 | 0.864555 | 0.851902 | -0.029430 |
+| Random Forest v2 | 0.950106 | 0.949578 | 0.947164 | -0.002942 |
+| XGBoost v2 | 0.949921 | 0.9493 | 0.945500 | -0.004421 |
+
+All four corrected comparison scores used the same fixed threshold, 0.5. Threshold sweeping remains a separate Phase 3 step.

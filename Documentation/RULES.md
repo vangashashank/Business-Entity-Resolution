@@ -37,7 +37,7 @@
   it's used to judge anything else. A silently wrong scorer invalidates every decision
   made downstream of it.
 - After **every** change that touches candidate generation, feature extraction, model,
-  threshold, or output formatting: re-run `utils/validate_submission.py` locally before
+  threshold, or output formatting: re-run `student_resource/utils/validate_submission.py` locally before
   moving on. Don't batch up changes and validate once at the end.
 - `main` (or your single working branch) always has a working, validator-passing
   pipeline end-to-end. If mid-change and running low on time/focus, don't leave it

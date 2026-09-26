@@ -34,7 +34,7 @@ c1_md = """# 01. Exploratory Data Analysis (EDA) & Stratified Validation Split
 2. **Inspect Country Distributions** across Train and Test sets, confirming that `France` only appears in Test (open-set country constraint).
 3. **Analyze Ground Truth Match-Count Distribution** (0, 1, 2, 3+ matches per S1 entity) and visualize using the project semantic color palette (`design.md`).
 4. **Extract 40 Real Matched Pairs** across Source 1 and Source 2/3 (names & addresses side-by-side) to build a hand-crafted noise pattern table.
-5. **Create & Lock Stratified Train/Val Split** (`dataset/val_split_ids.txt`) by match-count bucket, ensuring it is never overwritten once created."""
+5. **Create & Lock Stratified Train/Val Split** (`student_resource/dataset/val_split_ids.txt`) by match-count bucket, ensuring it is never overwritten once created."""
 
 # Cell 2: Setup Code
 c2_code = """import os
@@ -100,10 +100,10 @@ Verify shapes, dtypes, and null counts.
 
 # Cell 4: Load Train TSVs Code
 c4_code = """train_files = {
-    "train_ground_truth": "dataset/train/train_ground_truth.tsv",
-    "train_source1": "dataset/train/train_source1.tsv",
-    "train_source2": "dataset/train/train_source2.tsv",
-    "train_source3": "dataset/train/train_source3.tsv",
+    "train_ground_truth": "student_resource/dataset/train/train_ground_truth.tsv",
+    "train_source1": "student_resource/dataset/train/train_source1.tsv",
+    "train_source2": "student_resource/dataset/train/train_source2.tsv",
+    "train_source3": "student_resource/dataset/train/train_source3.tsv",
 }
 
 train_dfs = {}
@@ -125,10 +125,10 @@ for name, path in train_files.items():
 
 print("Executing Step 1: Loading train TSVs...")
 train_files = {
-    "train_ground_truth": "dataset/train/train_ground_truth.tsv",
-    "train_source1": "dataset/train/train_source1.tsv",
-    "train_source2": "dataset/train/train_source2.tsv",
-    "train_source3": "dataset/train/train_source3.tsv",
+    "train_ground_truth": "student_resource/dataset/train/train_ground_truth.tsv",
+    "train_source1": "student_resource/dataset/train/train_source1.tsv",
+    "train_source2": "student_resource/dataset/train/train_source2.tsv",
+    "train_source3": "student_resource/dataset/train/train_source3.tsv",
 }
 train_dfs = {}
 buf = io.StringIO()
@@ -167,9 +167,9 @@ for name in ["train_source1", "train_source2", "train_source3"]:
 print("\\n" + "="*60)
 print("TEST SET COUNTRY DISTRIBUTIONS:")
 test_files = {
-    "test_source1": "dataset/test/test_source1.tsv",
-    "test_source2": "dataset/test/test_source2.tsv",
-    "test_source3": "dataset/test/test_source3.tsv",
+    "test_source1": "student_resource/dataset/test/test_source1.tsv",
+    "test_source2": "student_resource/dataset/test/test_source2.tsv",
+    "test_source3": "student_resource/dataset/test/test_source3.tsv",
 }
 test_countries = {}
 for name, path in test_files.items():
@@ -200,9 +200,9 @@ for name in ["train_source1", "train_source2", "train_source3"]:
 
 buf.write("\n" + "="*60 + "\nTEST SET COUNTRY DISTRIBUTIONS:\n")
 test_files = {
-    "test_source1": "dataset/test/test_source1.tsv",
-    "test_source2": "dataset/test/test_source2.tsv",
-    "test_source3": "dataset/test/test_source3.tsv",
+    "test_source1": "student_resource/dataset/test/test_source1.tsv",
+    "test_source2": "student_resource/dataset/test/test_source2.tsv",
+    "test_source3": "student_resource/dataset/test/test_source3.tsv",
 }
 test_countries = {}
 for name, path in test_files.items():
@@ -399,7 +399,7 @@ for _, row in sample_gt.iterrows():
 
 # Lookup records from S2 and S3 efficiently
 s2_lookup = {}
-with open("dataset/train/train_source2.tsv", "r", encoding="utf-8") as f:
+with open("student_resource/dataset/train/train_source2.tsv", "r", encoding="utf-8") as f:
     header = f.readline().strip().split("\\t")
     for line in f:
         eid = line.split("\\t", 1)[0]
@@ -409,7 +409,7 @@ with open("dataset/train/train_source2.tsv", "r", encoding="utf-8") as f:
                 break
 
 s3_lookup = {}
-with open("dataset/train/train_source3.tsv", "r", encoding="utf-8") as f:
+with open("student_resource/dataset/train/train_source3.tsv", "r", encoding="utf-8") as f:
     header = f.readline().strip().split("\\t")
     for line in f:
         eid = line.split("\\t", 1)[0]
@@ -463,7 +463,7 @@ for _, row in sample_gt.iterrows():
         break
 
 s2_lookup = {}
-with open("dataset/train/train_source2.tsv", "r", encoding="utf-8") as f:
+with open("student_resource/dataset/train/train_source2.tsv", "r", encoding="utf-8") as f:
     header = f.readline().strip().split("\t")
     for line in f:
         eid = line.split("\t", 1)[0]
@@ -473,7 +473,7 @@ with open("dataset/train/train_source2.tsv", "r", encoding="utf-8") as f:
                 break
 
 s3_lookup = {}
-with open("dataset/train/train_source3.tsv", "r", encoding="utf-8") as f:
+with open("student_resource/dataset/train/train_source3.tsv", "r", encoding="utf-8") as f:
     header = f.readline().strip().split("\t")
     for line in f:
         eid = line.split("\t", 1)[0]
@@ -518,11 +518,11 @@ print("Step 4 complete.")
 c11_md = """## 5. Stratified Train / Validation Split
 Create a stratified split on S1 entities partitioned by match-count bucket (`0`, `1`, `2`, `3+`).
 - Target: 20% validation split (~441k S1 entities).
-- Output: `dataset/val_split_ids.txt`.
+- Output: `student_resource/dataset/val_split_ids.txt`.
 - **Immutable Rule:** NEVER regenerate this file once it exists. If it exists, load it directly."""
 
 # Cell 12: Stratified Split Code
-c12_code = """val_split_file = "dataset/val_split_ids.txt"
+c12_code = """val_split_file = "student_resource/dataset/val_split_ids.txt"
 
 if os.path.exists(val_split_file):
     print(f"[FOUND EXISTING SPLIT] Loading {val_split_file}...")
@@ -541,8 +541,8 @@ else:
     )
     val_id_set = set(val_ids)
     
-    # Save to dataset/val_split_ids.txt
-    os.makedirs("dataset", exist_ok=True)
+    # Save to student_resource/dataset/val_split_ids.txt
+    os.makedirs(os.path.dirname(val_split_file), exist_ok=True)
     with open(val_split_file, "w", encoding="utf-8") as f:
         for vid in val_ids:
             f.write(f"{vid}\\n")
@@ -571,7 +571,7 @@ print(f"Total Train S1 Entities:      {len(gt) - len(val_id_set):,}")
 print(f"Lock check: {val_split_file} exists and will NOT be regenerated in future runs.")"""
 
 print("Executing Step 5: Stratified train/val split creation...")
-val_split_file = "dataset/val_split_ids.txt"
+val_split_file = "student_resource/dataset/val_split_ids.txt"
 buf = io.StringIO()
 if os.path.exists(val_split_file):
     buf.write(f"[FOUND EXISTING SPLIT] Loading {val_split_file}...\n")

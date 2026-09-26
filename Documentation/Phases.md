@@ -18,7 +18,7 @@ Every phase ends with: commit + update `memory.md`.
 - [ ] Pull 30–50 real matched pairs, read them manually → build a noise-pattern table
       (suffixes, abbreviations, typos, reordering, missing fields)
 - [ ] **Stratified train/validation split** by match-count bucket (0/1/2/3+). Save
-      entity IDs to `dataset/val_split_ids.txt` and commit — never regenerate this.
+      entity IDs to `student_resource/dataset/val_split_ids.txt` and commit — never regenerate this.
       *(Skipping this is the single biggest way to fool yourself: an
       "always-predict-nothing" model looks great on a singleton-skewed validation
       set.)*

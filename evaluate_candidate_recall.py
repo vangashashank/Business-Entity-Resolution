@@ -3,7 +3,7 @@ ML Challenge 2026 — Business Entity Resolution
 Script: evaluate_candidate_recall.py
 
 Evaluates the candidate recall of the blocking pipeline on the validation split:
-1. Loads dataset/val_split_ids.txt.
+1. Loads student_resource/dataset/val_split_ids.txt.
 2. Filters train_ground_truth.tsv for validation S1 entities.
 3. Runs the 3-strategy blocking pipeline (TF-IDF char n-grams, Address/token, Phonetic).
 4. Measures Candidate Recall:
@@ -43,6 +43,7 @@ def evaluate_candidate_recall(
     random_state: int = 42,
     output_path: str = "output/candidate_pairs_val.tsv",
     top_k_tfidf: int = 20,
+    include_singletons: bool = False,
 ) -> float:
     t_start = time.time()
     print("=" * 70)
@@ -50,7 +51,7 @@ def evaluate_candidate_recall(
     print("=" * 70)
 
     # 1. Load validation IDs
-    val_split_path = "dataset/val_split_ids.txt"
+    val_split_path = "student_resource/dataset/val_split_ids.txt"
     if not os.path.exists(val_split_path):
         raise FileNotFoundError(f"Missing {val_split_path}! Run EDA first.")
 
@@ -60,13 +61,13 @@ def evaluate_candidate_recall(
     print(f"Total locked validation S1 entities: {len(val_ids):,}")
 
     # 2. Load ground truth
-    gt_path = "dataset/train/train_ground_truth.tsv"
+    gt_path = "student_resource/dataset/train/train_ground_truth.tsv"
     print(f"Loading {gt_path} (sep='\\t')...")
     gt = pd.read_csv(gt_path, sep="\t")
 
     # Filter to validation S1 entities
     gt_val = gt[gt["source1_entity_id"].isin(val_ids_set)].copy()
-    gt_val_with_matches = gt_val.dropna(subset=["matched_entity_ids"]).copy()
+    gt_val_with_matches = gt_val if include_singletons else gt_val.dropna(subset=["matched_entity_ids"]).copy()
 
     # Sample S1 entities if requested
     if sample_size and sample_size < len(gt_val_with_matches):
@@ -84,7 +85,10 @@ def evaluate_candidate_recall(
     all_needed_matches: Set[str] = set()
     for _, row in eval_gt.iterrows():
         sid = row["source1_entity_id"]
-        mids = set(x.strip() for x in str(row["matched_entity_ids"]).split(",") if x.strip())
+        raw_matches = row["matched_entity_ids"]
+        mids = set() if pd.isna(raw_matches) else set(
+            x.strip() for x in str(raw_matches).split(",") if x.strip()
+        )
         ground_truth_map[sid] = mids
         all_needed_matches.update(mids)
 
@@ -93,14 +97,14 @@ def evaluate_candidate_recall(
 
     # 3. Load S1 data
     print("\nLoading Source 1 records...")
-    s1_all = pd.read_csv("dataset/train/train_source1.tsv", sep="\t")
+    s1_all = pd.read_csv("student_resource/dataset/train/train_source1.tsv", sep="\t")
     s1_eval = s1_all[s1_all["entity_id"].isin(eval_s1_ids)].copy()
     s1_eval = preprocess_dataframe(s1_eval)
 
     # 4. Load S2 and S3 candidate pool
     print("\nLoading Source 2 and Source 3 candidate pool...")
-    s2_all = pd.read_csv("dataset/train/train_source2.tsv", sep="\t")
-    s3_all = pd.read_csv("dataset/train/train_source3.tsv", sep="\t")
+    s2_all = pd.read_csv("student_resource/dataset/train/train_source2.tsv", sep="\t")
+    s3_all = pd.read_csv("student_resource/dataset/train/train_source3.tsv", sep="\t")
 
     # The pool must contain all true matches + background negatives
     s2_targets = s2_all[s2_all["entity_id"].isin(all_needed_matches)]
@@ -203,10 +207,13 @@ if __name__ == "__main__":
     parser.add_argument("--sample", type=int, default=2500, help="Number of validation S1 entities to evaluate (default: 2500)")
     parser.add_argument("--output", type=str, default="output/candidate_pairs_val.tsv", help="Path to save candidate pairs")
     parser.add_argument("--top_k_tfidf", type=int, default=20, help="Top-k for TF-IDF char n-grams (default: 20)")
+    parser.add_argument("--include-singletons", action="store_true",
+                        help="Include validation S1 entities with no known matches in the sample")
     args = parser.parse_args()
 
     evaluate_candidate_recall(
         sample_size=args.sample,
         output_path=args.output,
         top_k_tfidf=args.top_k_tfidf,
+        include_singletons=args.include_singletons,
     )

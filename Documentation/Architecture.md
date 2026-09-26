@@ -45,7 +45,7 @@ train/test *.tsv (sep="\t")
 [6] Output Generation  → matching_results.tsv
         │
         ▼
-[7] Validation (utils/validate_submission.py) → PASS/FAIL before every upload
+[7] Validation (student_resource/utils/validate_submission.py) → PASS/FAIL before every upload
 ```
 
 ## 2. Tech Stack
@@ -63,19 +63,19 @@ train/test *.tsv (sep="\t")
 | Heavy compute | Google Colab (free/Pro tier) | see §4 below |
 | Versioning | git, single `main` branch (solo — no branch-per-person needed) | keep `main` always validator-passing |
 
-## 3. Folder Structure (solo, simplified from the 3-person layout)
+## 3. Folder Structure (solo, single source of truth layout)
 
 ```
 amazon-ml-challenge-2026/
-├── dataset/                        # Junction/symlink to student_resource/dataset
-│   ├── train/                      # (train_source1.tsv, train_source2.tsv, train_source3.tsv, train_ground_truth.tsv)
-│   ├── test/                       # (test_source1.tsv, test_source2.tsv, test_source3.tsv)
-│   └── val_split_ids.txt           # committed once, never regenerated
-├── notebooks/
-│   └── 01_eda.ipynb
-├── colab_notebooks/                # anything that runs on Colab lives here
-│   └── 02_embeddings.ipynb         # only if embeddings are needed
-├── src/                            # Pipeline source code (linked with code/bussiness_entity_resolution/src)
+├── student_resource/               # Canonical organizer-provided resource folder
+│   ├── dataset/                    # Raw train and test TSV files
+│   │   ├── train/                  # (train_source1.tsv, train_source2.tsv, train_source3.tsv, train_ground_truth.tsv)
+│   │   ├── test/                   # (test_source1.tsv, test_source2.tsv, test_source3.tsv)
+│   │   └── val_split_ids.txt       # committed once, never regenerated
+│   ├── utils/                      # validate_submission.py (canonical submission validator)
+│   └── README.md
+├── src/                            # Real active pipeline source code
+│   ├── __init__.py
 │   ├── preprocessing.py
 │   ├── blocking.py
 │   ├── features.py
@@ -83,23 +83,18 @@ amazon-ml-challenge-2026/
 │   ├── inference.py
 │   ├── scoring.py                  # local F0.5 metric — build this FIRST
 │   └── threshold.py
-├── artifacts/                      # things exported from Colab land here
+├── notebooks/
+│   ├── 01_eda.ipynb
+│   └── match_count_distribution.png
+├── colab_notebooks/                # anything that runs on Colab lives here
+│   └── 02_embeddings.ipynb         # only if embeddings are needed
+├── artifacts/                      # trained models / offline vectors land here
 │   ├── embeddings.parquet          # (if used)
 │   └── model.pkl / model.json
 ├── output/
-│   ├── matching_results.tsv
-│   └── candidate_pairs.tsv
-├── utils/                          # Junction/symlink to student_resource/utils
-│   └── validate_submission.py      # provided by organizers
-├── student_resource/               # Organizer-provided resource folder
-│   ├── dataset/                    # Raw train and test TSV files
-│   ├── utils/                      # validate_submission.py
-│   └── README.md
-├── code/                           # Deliverable package scaffolding
-│   └── bussiness_entity_resolution/
-│       ├── src/
-│       ├── README.md
-│       └── requirements.txt
+│   ├── matching_results.tsv        # final prediction output
+│   └── candidate_pairs.tsv         # blocking candidate set
+├── evaluate_candidate_recall.py    # script to evaluate candidate recall on val split
 ├── Documentation/                  # Project specifications and guidelines
 │   ├── PRD.md
 │   ├── Architecture.md
@@ -115,6 +110,7 @@ amazon-ml-challenge-2026/
 ├── requirements.txt
 └── README.md
 ```
+*(Note: `code/business_entity_resolution/` is assembled ONCE at Phase 7 packaging from `src/`)*
 
 ## 4. Local vs. Colab Split
 
