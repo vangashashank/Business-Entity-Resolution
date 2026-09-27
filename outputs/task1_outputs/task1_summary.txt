@@ -1,0 +1,31 @@
+Task 1 training-only positive-match inspection
+Shapes: S1=(2206821, 4), S2=(5034616, 4), S3=(5285603, 4), GT=(2206821, 2)
+Columns:
+  S1: ['entity_id', 'business_name', 'business_address', 'country']
+  S2: ['entity_id', 'business_name', 'business_address', 'country']
+  S3: ['entity_id', 'business_name', 'business_address', 'country']
+  GT: ['source1_entity_id', 'matched_entity_ids']
+Sampled S1 entities: 25
+Pairwise positive links in sample: 86
+Lookup issues: 0
+
+Agreement summary (% positive links):
+               percent_of_positive_links
+name_exact                         18.60
+address_exact                      10.47
+country_exact                     100.00
+
+By matched source:
+                name_exact  address_exact  country_exact
+matched_source                                          
+S2                   25.00          17.50          100.0
+S3                   13.04           4.35          100.0
+
+Patterns:
+                                            pattern  link_count  percent_of_sampled_positive_links
+Same normalized name + different normalized address          14                              16.28
+    Address formatting/punctuation differences only           7                               8.14
+Different normalized name + same normalized address           7                               8.14
+            Missing address in S1 or matched record           4                               4.65
+                       Different normalized country           0                               0.00
+Flagged links: 0

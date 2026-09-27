@@ -1,0 +1,32 @@
+{
+  "candidate_rows_tested": 40000,
+  "peak_rss_mb": 272.21875,
+  "retrieval_checks": {
+    "number_address": {
+      "features": 4096,
+      "records": 12000,
+      "self_retrieval_at_100": 1.0
+    },
+    "suffix_name": {
+      "features": 4096,
+      "records": 12000,
+      "self_retrieval_at_100": 1.0
+    },
+    "transliterated_name": {
+      "features": 4096,
+      "records": 12000,
+      "self_retrieval_at_100": 1.0
+    }
+  },
+  "runtime_seconds": 1.7495888329999993,
+  "status": "passed",
+  "training_only": true,
+  "transform_checks": {
+    "ordinal_normalization": true,
+    "separator_compaction": true,
+    "suffix_normalization": true,
+    "transliteration_ascii": true,
+    "transliteration_nonempty": true,
+    "zero_padding": true
+  }
+}

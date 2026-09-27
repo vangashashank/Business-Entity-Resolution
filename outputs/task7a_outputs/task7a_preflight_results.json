@@ -1,0 +1,319 @@
+{
+  "batch_result": {
+    "checkpoint_write": 0.01670700000000025,
+    "feature_generation": 0.6307456249999994,
+    "lightgbm_inference": 0.8627696250000003,
+    "new_batches": 1,
+    "skipped_batches": 0
+  },
+  "completed_at_utc": "2026-09-26T13:09:00.017262+00:00",
+  "failure_simulation_passed": true,
+  "full_scale_run": false,
+  "input_validation": {
+    "checks": [
+      {
+        "check": "required_columns",
+        "detail": "missing=[]",
+        "passed": true
+      },
+      {
+        "check": "entity_id_non_null",
+        "detail": "nulls=0",
+        "passed": true
+      },
+      {
+        "check": "entity_id_unique",
+        "detail": "duplicates=0",
+        "passed": true
+      },
+      {
+        "check": "entity_id_pattern",
+        "detail": "expected S1-<nonnegative integer>",
+        "passed": true
+      },
+      {
+        "check": "country_non_null",
+        "detail": "missing=0",
+        "passed": true
+      },
+      {
+        "check": "country_partition",
+        "detail": "unknown=[]",
+        "passed": true
+      },
+      {
+        "check": "retrieval_text_available",
+        "detail": "both_empty=0",
+        "passed": true
+      },
+      {
+        "check": "row_count_positive",
+        "detail": "rows=100",
+        "passed": true
+      }
+    ],
+    "normalized_country_counts": {
+      "india": 37,
+      "us": 63
+    },
+    "ordered_entity_id_sha256": "3fbcf7a4f520b6e43e8be2e6535dc076e0df281d9a95c6220bd85ad20ab51999",
+    "passed": true,
+    "row_count": 100
+  },
+  "negative_input_tests": [
+    {
+      "case": "missing_required_column",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "passed": true
+    },
+    {
+      "case": "duplicate_entity_id",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "passed": true
+    },
+    {
+      "case": "unknown_country",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "passed": true
+    },
+    {
+      "case": "both_text_fields_missing",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "passed": true
+    }
+  ],
+  "operational_constraints": [
+    "Use one native worker initially; eight-worker FAISS reproduced a mixed-OpenMP native exit during Task 7A preflight.",
+    "Treat the 20.02-hour figure as a linear Task 6 planning estimate, not a full-run measurement."
+  ],
+  "parity": {
+    "all_passed": true,
+    "feature_model_checks": [
+      {
+        "check": "pair_keys_and_order",
+        "compared_values": 25000,
+        "detail": "",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "feature_generation",
+        "tolerance": "exact"
+      },
+      {
+        "check": "all_66_feature_values",
+        "compared_values": 1650000,
+        "detail": "",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "feature_generation",
+        "tolerance": "float atol=1e-06, rtol=1e-06; integer/bool exact"
+      },
+      {
+        "check": "lightgbm_scores",
+        "compared_values": 25000,
+        "detail": "",
+        "maximum_absolute_difference": 2.9774050225306326e-08,
+        "mean_absolute_difference": 2.6901759561352757e-10,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "model_scoring",
+        "tolerance": "absolute <= 5e-08"
+      },
+      {
+        "check": "score_ge_0.95",
+        "compared_values": 25000,
+        "detail": "",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "decision_policy",
+        "tolerance": "exact"
+      }
+    ],
+    "retrieval_checks": [
+      {
+        "check": "baseline_name_top250_ids",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "exact"
+      },
+      {
+        "check": "baseline_name_top250_scores",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "absolute <= 1e-06; finite masks exact"
+      },
+      {
+        "check": "baseline_address_top250_ids",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "exact"
+      },
+      {
+        "check": "baseline_address_top250_scores",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "absolute <= 1e-06; finite masks exact"
+      },
+      {
+        "check": "transliterated_name_top250_ids",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "exact"
+      },
+      {
+        "check": "transliterated_name_top250_scores",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "absolute <= 1e-06; finite masks exact"
+      },
+      {
+        "check": "number_address_top250_ids",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "exact"
+      },
+      {
+        "check": "number_address_top250_scores",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "absolute <= 1e-06; finite masks exact"
+      },
+      {
+        "check": "suffix_name_top250_ids",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "exact"
+      },
+      {
+        "check": "suffix_name_top250_scores",
+        "compared_values": 25000,
+        "detail": "Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_retrieval",
+        "tolerance": "absolute <= 1e-06; finite masks exact"
+      },
+      {
+        "check": "candidate_counts",
+        "compared_values": 100,
+        "detail": "Frozen cap-250 candidate count by S1.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_assembly",
+        "tolerance": "exact"
+      },
+      {
+        "check": "candidate_ids_and_order",
+        "compared_values": 25000,
+        "detail": "Exact encoded candidate IDs and frozen ordering.",
+        "maximum_absolute_difference": 0.0,
+        "mean_absolute_difference": 0.0,
+        "mismatch_count": 0,
+        "passed": true,
+        "stage": "candidate_assembly",
+        "tolerance": "exact"
+      }
+    ]
+  },
+  "runtime_seconds": {
+    "artifact_hash_validation": 2.6354680419999994,
+    "bundle_load": 0.7945734990000011,
+    "candidate_assembly": 0.05747858299999997,
+    "candidate_store_initialization": 1.6834000000187643e-05,
+    "candidate_text_lookup": 3.2486440000000005,
+    "checkpoint_write": 0.01670700000000025,
+    "feature_generation": 0.6307456249999994,
+    "input_source_hash_validation": 0.07126633400000015,
+    "lightgbm_inference": 0.8627696250000003,
+    "retrieval_query": 1.0928066249999997,
+    "total": 9.863484833000001
+  },
+  "scale_reconciliation": {
+    "canonical_projected_hours": 20.017498265168324,
+    "canonical_smoke_seconds": 32.65466195699876,
+    "canonical_source": "outputs/task6_outputs/task6_scale_estimate.json",
+    "projected_candidate_pairs": 551687595,
+    "reason_current": "Task 6 scale estimate uses 32.654662 seconds for 1,000 S1 and includes artifact hash validation plus explicit retrieval, lookup, feature, model, and write phases.",
+    "reason_stale": "The 18.65-hour value is the earlier linear extrapolation from approximately 30.420 seconds per 1,000 S1 and excludes pre-use artifact hash validation.",
+    "stale_project_status_hours": 18.648496170027084,
+    "stale_smoke_seconds": 30.42140083500089,
+    "stale_value_present_in_project_status_before_task7a": true
+  },
+  "smoke": {
+    "batch_size": 100,
+    "candidate_average": 250.0,
+    "candidate_maximum": 250,
+    "candidate_minimum": 250,
+    "native_workers": 1,
+    "output_bytes": 434543,
+    "output_sha256": "25dfb38a6cac467eaab0aeb1d6df3edc70dc4b8834bee9fd6c1b7c0ec3b48f19",
+    "pair_rows": 25000,
+    "peak_rss_mb": 920.109375,
+    "predicted_links": 336,
+    "s1_entities": 100,
+    "task6_batch_byte_exact": true,
+    "task6_batch_sha256": "25dfb38a6cac467eaab0aeb1d6df3edc70dc4b8834bee9fd6c1b7c0ec3b48f19"
+  },
+  "status": "PASS",
+  "submission_generated": false,
+  "task": "Task 7A",
+  "test_data_used": false
+}

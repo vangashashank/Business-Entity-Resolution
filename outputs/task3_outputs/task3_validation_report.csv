@@ -1,0 +1,11 @@
+check,status,detail
+Frozen candidate recall reproduced,PASS,link recall=0.968964999249
+Frozen complete recall reproduced,PASS,complete recall=0.915900
+Every pair belongs to frozen candidate set,PASS,"pairs=2,499,947"
+No duplicate S1-candidate pairs,PASS,duplicates=0
+Labels directly verified against training ground truth,PASS,"retrieved positives=32,252"
+Positive counts reconcile with retrieval misses,PASS,"32,252+1,033=33,285"
+Candidate cap respected,PASS,max=250
+No train-validation S1 overlap,PASS,overlap=0
+Numeric features contain no NaN or inf,PASS,chunk validation passed
+Parquet row count matches pair count,PASS,"parquet rows=2,499,947"

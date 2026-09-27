@@ -1,0 +1,32 @@
+check,passed,detail
+frozen_inputs_unchanged,True,All Task 2.5 through Task 6 inputs retained their pre-run SHA-256.
+task6_status_pass,True,Task 6 run manifest PASS.
+task6_integrity_pass,True,25 checks
+retrieval_hashes_valid,True,21 artifacts
+candidate_store_hashes_valid,True,64 artifacts
+scale_canonical_20_02,True,hours=20.017498265168324
+stale_18_65_traced,True,earlier_seconds=30.421401
+disk_preflight,True,"free=338,137,432,064"
+input_contract_positive,True,rows=100
+input_contract_negative_tests,True,tests=4
+source_hash_frozen,True,591af0e1dfeb65cab71ea6ee8cb69df00f92d6ba6fa79e05746c938775d14973
+retrieval_parity,True,checks=12
+feature_model_parity,True,checks=4
+task6_batch_byte_exact,True,25dfb38a6cac467eaab0aeb1d6df3edc70dc4b8834bee9fd6c1b7c0ec3b48f19
+feature_count_66,True,features=66
+threshold_frozen,True,score >= 0.95
+candidate_cap_frozen,True,max=250
+no_duplicate_pairs,True,pairs=25000
+atomic_batch_and_manifest,True,One committed batch survived interruption.
+restart_skips_completed,True,"{'new_batches': 1, 'skipped_batches': 1, 'feature_generation': 0.3164634589999977, 'lightgbm_inference': 0.5229399160000021, 'checkpoint_write': 0.003860625000001505}"
+completed_rerun_no_op,True,"{'new_batches': 0, 'skipped_batches': 2, 'feature_generation': 0.0, 'lightgbm_inference': 0.0, 'checkpoint_write': 0.0}"
+corrupt_batch_detected,True,Completed batch hash changed: batch_00000.parquet
+uncommitted_temp_not_complete,True,Temporary file absent from completion manifest.
+deterministic_batch_order,True,"[{'batch_id': 'batch_00000', 'start_entity_offset': 0, 'stop_entity_offset': 100, 'entity_count': 100, 'first_source1_entity_id': 'S1-34271266', 'last_source1_entity_id': 'S1-941442245', 'entity_ids_sha256': '3fbcf7a4f520b6e43e8be2e6535dc076e0df281d9a95c6220bd85ad20ab51999'}]"
+output_schema_exact,True,"['source1_entity_id', 'candidate_entity_id', 'candidate_source', 'lightgbm_score', 'predicted_match', 'candidate_position', 'batch_id']"
+smoke_only_100_s1,True,No full-scale inference.
+no_ground_truth_runtime,True,Ground truth was not resolved.
+no_test_data,True,Training sources only.
+no_submission,True,Internal checkpoint output only.
+full_scale_locked,True,--mode full raises before input processing.
+single_worker_safety_mode,True,One native worker used after eight-worker OpenMP instability.

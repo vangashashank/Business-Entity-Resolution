@@ -1,0 +1,128 @@
+{
+  "failure_simulation": {
+    "batch_size": 50,
+    "completed_rerun_result": {
+      "checkpoint_write": 0.0,
+      "feature_generation": 0.0,
+      "lightgbm_inference": 0.0,
+      "new_batches": 0,
+      "skipped_batches": 2
+    },
+    "corrupt_completed_batch_detected": true,
+    "corruption_error": "Completed batch hash changed: batch_00000.parquet",
+    "interrupted_after_one_completed_batch": {
+      "checkpoint_write": 0.00416562499999884,
+      "feature_generation": 0.31177787499999887,
+      "lightgbm_inference": 0.4291591669999999,
+      "new_batches": 1,
+      "skipped_batches": 0
+    },
+    "orphan_temporary_file_ignored_as_uncommitted": true,
+    "passed": true,
+    "restart_result": {
+      "checkpoint_write": 0.003860625000001505,
+      "feature_generation": 0.3164634589999977,
+      "lightgbm_inference": 0.5229399160000021,
+      "new_batches": 1,
+      "skipped_batches": 1
+    },
+    "verified_after_interruption": {
+      "completed_batches": 1,
+      "pair_rows": 12500
+    },
+    "verified_after_restart": {
+      "completed_batches": 2,
+      "pair_rows": 25000
+    }
+  },
+  "legacy_task5_findings": {
+    "atomic_batch_write": true,
+    "atomic_manifest_write": true,
+    "completed_hash_verified_on_resume": true,
+    "deterministic_boundaries": true,
+    "metadata_gap": "Legacy manifest binds the Task 5 contract hash and selected-ID hash but does not explicitly record the Task 6 retrieval/store manifests or full source-file fingerprint.",
+    "no_op_after_completion": true
+  },
+  "operational_constraints": {
+    "initial_native_workers": 1,
+    "prediction_effect": "none",
+    "reason": "Eight-worker FAISS reproduced a mixed-OpenMP native exit; one worker passed with byte-exact output."
+  },
+  "output_submission_boundary": {
+    "blocks_internal_inference": false,
+    "internal_checkpoint_columns": [
+      "source1_entity_id",
+      "candidate_entity_id",
+      "candidate_source",
+      "lightgbm_score",
+      "predicted_match",
+      "candidate_position",
+      "batch_id"
+    ],
+    "missing_external_contract": [
+      "official filename and file format",
+      "official column names and order",
+      "whether predictions are one row per link or grouped per S1",
+      "required ordering and empty-match representation"
+    ],
+    "official_submission_schema_known": false,
+    "submission_transformation_performed": false
+  },
+  "status": "PASS",
+  "task7a_safety_fix": {
+    "guarantees": [
+      "batch Parquet committed atomically before manifest completion record",
+      "manifest updated atomically",
+      "completed file byte size and SHA-256 verified on every resume",
+      "schema, row count, batch ID, S1 order, duplicate pairs, and threshold decisions verified",
+      "model, feature schema, Task 5 contract, Task 6 retrieval/store manifests, threshold, source input, and boundaries explicitly bound",
+      "only manifest-listed final files count as complete"
+    ],
+    "manifest_path": "outputs/task7a_outputs/preflight_checkpoints/checkpoint_manifest.json",
+    "prediction_logic_changed": false,
+    "run_contract": {
+      "atomic_commit": "write temporary Parquet, os.replace final file, then atomic manifest update",
+      "batch_boundaries": [
+        {
+          "batch_id": "batch_00000",
+          "entity_count": 100,
+          "entity_ids_sha256": "3fbcf7a4f520b6e43e8be2e6535dc076e0df281d9a95c6220bd85ad20ab51999",
+          "first_source1_entity_id": "S1-34271266",
+          "last_source1_entity_id": "S1-941442245",
+          "start_entity_offset": 0,
+          "stop_entity_offset": 100
+        }
+      ],
+      "batch_size": 100,
+      "candidate_cap": 250,
+      "candidate_store_manifest_sha256": "3005392d7cd81168eba8b611afd7005965c846389b1950fb3c97de5242d9fdd5",
+      "contract_version": "task7a-checkpoint-v1",
+      "feature_schema_sha256": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+      "model_sha256": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0",
+      "output_columns": [
+        "source1_entity_id",
+        "candidate_entity_id",
+        "candidate_source",
+        "lightgbm_score",
+        "predicted_match",
+        "candidate_position",
+        "batch_id"
+      ],
+      "output_schema_sha256": "994cc73f46c32fd33449eaf65149f54064167b22d727a8f805d490da9ddf27bc",
+      "resume_rule": "Only manifest-recorded batches with matching byte size, SHA-256, schema, boundaries, and decisions are complete.",
+      "retrieval_configuration": "Combined baseline-preserving augmentation, cap=250",
+      "retrieval_manifest_sha256": "efe9723e3e1bc51e0d3fc722f94e5a621150c93ba58f4542f25003a690ce5482",
+      "run_contract_sha256": "a4eee9eaef05300c756fd60c7a4ca1c2f02d31d945fc734373153d38771f3abd",
+      "source_input": {
+        "basename": "train_source1.tsv",
+        "bytes": 210069713,
+        "full_source_row_count": 2206821,
+        "selected_ordered_entity_id_sha256": "3fbcf7a4f520b6e43e8be2e6535dc076e0df281d9a95c6220bd85ad20ab51999",
+        "selected_row_count": 100,
+        "sha256": "591af0e1dfeb65cab71ea6ee8cb69df00f92d6ba6fa79e05746c938775d14973"
+      },
+      "task5_inference_contract_sha256": "f45a50e1d4ff2a6b31a607185ad20d0fc1d993a4e0daed7bf4ce04c160fdb359",
+      "threshold": 0.95
+    }
+  }
+}

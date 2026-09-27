@@ -1,0 +1,26 @@
+check,passed,detail
+frozen_upstream_hashes_unchanged,True,All frozen inputs and code retain their pre-run SHA-256.
+no_ground_truth_path,True,Task 6 resolved no ground-truth input.
+no_test_path,True,Only train_source1/2/3 were resolved.
+configuration_frozen,True,"Combined baseline-preserving augmentation, cap=250"
+candidate_cap_frozen,True,max=250
+signal_order_frozen,True,"['baseline_name', 'baseline_address', 'transliterated_name', 'number_address', 'suffix_name']"
+country_partitions_frozen,True,"['india', 'us']"
+retrieval_artifact_hashes,True,21 artifacts
+candidate_store_artifact_hashes,True,64 shards
+retrieval_parity_all,True,22 checks
+candidate_store_parity_all,True,15 checks
+feature_count_66,True,features=66
+model_feature_order,True,Saved LightGBM order equals Task 3 schema.
+threshold_frozen,True,score >= 0.95
+smoke_entity_count,True,entities=1000
+candidate_pair_reconciliation,True,pairs=249992
+candidate_counts_nonzero,True,min=242
+candidate_counts_at_cap,True,max=250
+prediction_pair_reconciliation,True,rows=249992
+prediction_duplicate_pairs,True,No duplicate pairs.
+prediction_scores_finite,True,All saved scores are finite.
+prediction_decisions_consistent,True,All decisions equal score >= 0.95.
+candidate_source_domain,True,"['S2', 'S3']"
+selective_store_lookup,True,"looked up 237,411 unique of 10,320,219 stored records"
+full_scale_not_run,True,"Only the fixed Task 5 1,000-S1 smoke set was executed."

@@ -1,0 +1,103 @@
+TASK 2 - CANDIDATE GENERATION AND RECALL EVALUATION
+
+Scope
+-----
+Training data only. No classifier, threshold selection, test labels, or test predictions were used.
+Source files: train_source1.tsv, train_source2.tsv, train_source3.tsv, train_ground_truth.tsv
+
+Normalization
+-------------
+Names and addresses: Unicode NFKC, casefold, underscore/punctuation to spaces, whitespace collapse, trim.
+Country: Unicode NFKC, casefold, whitespace collapse, trim.
+Original values were retained in evaluation and failure-analysis outputs.
+
+Full-ground-truth country validation
+------------------------------------
+Total positive links: 7,638,365
+Same-country links: 7,638,365 (100.000000%)
+Different-country links: 0 (0.000000%)
+Missing-country links: 0 (0.000000%)
+Missing candidate lookups: 0
+Country hard block used: True
+
+Evaluation set
+--------------
+S1 entities: 10,000, random_state=42
+Match-count groups: 1=2,500, 2=2,500, 3-5=2,500, 6+=2,500
+
+Retrieval method
+----------------
+Approximate retrieval uses character 3-5 gram TF-IDF, sparse random projection, and FAISS IVFPQ cosine-style search.
+S2 and S3 share each partition index; source-prefixed IDs remain distinct.
+Name and address retrieval are evaluated independently and in unions/rank fusion.
+
+Selected results
+----------------
+Exact normalized name K=-: link recall=21.3670%, complete recall=7.1600%, avg candidates=9.23, p95=56, max=458
+Exact normalized address K=-: link recall=8.2560%, complete recall=2.2100%, avg candidates=0.34, p95=2, max=20
+Exact union K=-: link recall=28.3401%, complete recall=9.9900%, avg candidates=9.53, p95=56, max=458
+Name TF-IDF K=5: link recall=43.3499%, complete recall=22.8400%, avg candidates=5.00, p95=5, max=5
+Address TF-IDF K=5: link recall=59.5283%, complete recall=35.2400%, avg candidates=5.00, p95=5, max=5
+All signals ranked K=5: link recall=57.6596%, complete recall=37.7800%, avg candidates=5.00, p95=5, max=5
+All signals union K=5: link recall=79.1918%, complete recall=56.8500%, avg candidates=16.64, p95=62, max=468
+Name TF-IDF K=10: link recall=51.9093%, complete recall=29.8100%, avg candidates=10.00, p95=10, max=10
+Address TF-IDF K=10: link recall=70.1697%, complete recall=47.8900%, avg candidates=10.00, p95=10, max=10
+All signals ranked K=10: link recall=73.2582%, complete recall=54.9900%, avg candidates=10.00, p95=10, max=10
+All signals union K=10: link recall=86.7928%, complete recall=70.4400%, avg candidates=25.43, p95=69, max=478
+Name TF-IDF K=20: link recall=57.6296%, complete recall=35.0500%, avg candidates=20.00, p95=20, max=20
+Address TF-IDF K=20: link recall=74.7724%, complete recall=53.4500%, avg candidates=20.00, p95=20, max=20
+All signals ranked K=20: link recall=82.8271%, complete recall=67.0500%, avg candidates=20.00, p95=20, max=20
+All signals union K=20: link recall=89.9324%, complete recall=76.5100%, avg candidates=44.11, p95=81, max=498
+Name TF-IDF K=50: link recall=63.7945%, complete recall=40.3900%, avg candidates=50.00, p95=50, max=50
+Address TF-IDF K=50: link recall=77.7858%, complete recall=57.7500%, avg candidates=50.00, p95=50, max=50
+All signals ranked K=50: link recall=87.9886%, complete recall=74.9000%, avg candidates=50.00, p95=50, max=50
+All signals union K=50: link recall=92.4320%, complete recall=81.4400%, avg candidates=102.05, p95=115, max=538
+Name TF-IDF K=100: link recall=67.5920%, complete recall=44.1200%, avg candidates=100.00, p95=100, max=100
+Address TF-IDF K=100: link recall=79.2760%, complete recall=59.8900%, avg candidates=100.00, p95=100, max=100
+All signals ranked K=100: link recall=91.4105%, complete recall=80.2800%, avg candidates=100.00, p95=100, max=100
+All signals union K=100: link recall=93.5947%, complete recall=83.8600%, avg candidates=199.89, p95=200, max=589
+
+Best observed configuration
+---------------------------
+All signals union K=100: link recall=93.5947%, complete recall=83.8600%, average candidates=199.89.
+
+S2 vs S3 for the best configuration
+------------------------------------
+S2: 95.3399% (15,385/16,137)
+S3: 91.9524% (15,768/17,148)
+
+Recall by match-count group
+---------------------------
+1: link recall=93.2000%, complete recall=93.2000%
+2: link recall=93.7200%, complete recall=88.3600%
+3-5: link recall=93.8602%, complete recall=81.4000%
+6+: link recall=93.4585%, complete recall=72.4800%
+
+Runtime and memory
+------------------
+Total pipeline runtime: 13.95 minutes
+Peak process RSS: 2371.2 MB
+Estimated compressed name index: 708.5 MB
+Estimated compressed address index: 685.0 MB
+No dense 10,000 x 10.3M similarity matrix was created.
+
+Failure analysis
+----------------
+Configuration analyzed: All signals union K=100
+Sampled missed positive links: 50
+address_number_difference: 27
+script_or_transliteration_difference: 20
+very_different_name: 15
+missing_address: 9
+lexical_rank_beyond_budget: 7
+legal_suffix_variation: 6
+common_exact_name: 4
+very_different_address: 1
+name_number_difference: 1
+
+Conclusion
+----------
+Use the strategy comparison to select the smallest candidate budget that preserves acceptable link and complete recall.
+Exact name/address rules are useful recall supplements but are not sufficient as hard blocking rules.
+The approximate name and address signals should remain separate inputs to candidate generation because their union recovers complementary positives.
+Task 2 stops here. No pairwise classifier or final match threshold was built.

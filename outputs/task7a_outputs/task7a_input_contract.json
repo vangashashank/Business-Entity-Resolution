@@ -1,0 +1,72 @@
+{
+  "columns": {
+    "business_address": {
+      "dtype": "string",
+      "null_normalization": "empty string",
+      "nullable": true
+    },
+    "business_name": {
+      "dtype": "string",
+      "null_normalization": "empty string",
+      "nullable": true
+    },
+    "country": {
+      "dtype": "string",
+      "normalized_allowed_values": [
+        "india",
+        "us"
+      ],
+      "normalizer": "task2_candidate_generation.normalize_country_series",
+      "nullable": false
+    },
+    "entity_id": {
+      "dtype": "string",
+      "nullable": false,
+      "pattern": "^S1-\\d+$",
+      "unique": true
+    }
+  },
+  "contract_version": "task7a-input-v1",
+  "fingerprint": {
+    "required_before_launch": [
+      "source_file_sha256",
+      "source_file_bytes",
+      "ordered_entity_id_sha256",
+      "row_count"
+    ],
+    "resume_rule": "All four values must exactly match the checkpoint run contract."
+  },
+  "format": "tab-separated text read with dtype=string",
+  "inference_safety": {
+    "both_retrieval_text_fields_empty": "fail before retrieval",
+    "duplicate_or_null_entity_id": "fail before retrieval",
+    "extra_columns": "allowed but ignored only after required columns validate",
+    "unknown_country": "fail before retrieval"
+  },
+  "normalization": {
+    "code_hashes": {
+      "task2": "3b9aa38701ec96fb838201747d0be6d40dca5645881b3245ae98a0c3ef47895c",
+      "task2_5": "c5e8c61b1754a483834d48d36927d78bb03803c4d70b3a9bf4dd03f543bb5660"
+    },
+    "country": "task2_candidate_generation.normalize_country_series",
+    "name_and_address": "task2_candidate_generation.normalize_series",
+    "number_address": "task2_5_candidate_selection.address_number_series",
+    "suffix_name": "task2_5_candidate_selection.strip_legal_suffix_series",
+    "transliterated_name": "task2_5_candidate_selection.transliterate_series"
+  },
+  "ordering": {
+    "batch_rule": "Fixed contiguous zero-based row offsets, batch size 100 initially.",
+    "identity_hash": "SHA-256 of newline-joined entity_id values in physical order.",
+    "rule": "Preserve physical input row order; do not sort before batch assignment."
+  },
+  "required_columns_in_order": [
+    "entity_id",
+    "business_name",
+    "business_address",
+    "country"
+  ],
+  "row_requirements": [
+    "At least one of normalized business_name or normalized business_address is nonempty.",
+    "Every normalized country maps to an existing retrieval partition."
+  ]
+}

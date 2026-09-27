@@ -1,0 +1,173 @@
+{
+  "artifacts": [
+    {
+      "bytes": 218044,
+      "path": "failure_simulation/checkpoint_resume/batch_00000.parquet",
+      "sha256": "57375b453bb444fef7c24e4a0d8f4311d1086e206256ebd9b0a1e7210e4c6ccb"
+    },
+    {
+      "bytes": 217853,
+      "path": "failure_simulation/checkpoint_resume/batch_00001.parquet",
+      "sha256": "019d8e741ad7158680566246ad73093b316fd4d3dc833447b66bdb00c5324ff1"
+    },
+    {
+      "bytes": 4002,
+      "path": "failure_simulation/checkpoint_resume/checkpoint_manifest.json",
+      "sha256": "e65e29a2b95c6c504f37ff0f2dd85fa10f8c27db4a85d0f680074e029d39a589"
+    },
+    {
+      "bytes": 49,
+      "path": "failure_simulation/checkpoint_resume/uncommitted_batch.tmp.parquet",
+      "sha256": "93c16c70d36c43d0b55d0e4f7f8709db1ddcd4628e2af4fb19ace056ff040b2a"
+    },
+    {
+      "bytes": 218044,
+      "path": "failure_simulation/corrupt_completed_detection/batch_00000.parquet",
+      "sha256": "9cbeee39e27f7eac64218b0eae618f8eb61c08fafaf6bfa943e76e18cd429c6b"
+    },
+    {
+      "bytes": 217853,
+      "path": "failure_simulation/corrupt_completed_detection/batch_00001.parquet",
+      "sha256": "019d8e741ad7158680566246ad73093b316fd4d3dc833447b66bdb00c5324ff1"
+    },
+    {
+      "bytes": 4002,
+      "path": "failure_simulation/corrupt_completed_detection/checkpoint_manifest.json",
+      "sha256": "e65e29a2b95c6c504f37ff0f2dd85fa10f8c27db4a85d0f680074e029d39a589"
+    },
+    {
+      "bytes": 49,
+      "path": "failure_simulation/corrupt_completed_detection/uncommitted_batch.tmp.parquet",
+      "sha256": "93c16c70d36c43d0b55d0e4f7f8709db1ddcd4628e2af4fb19ace056ff040b2a"
+    },
+    {
+      "bytes": 434543,
+      "path": "preflight_checkpoints/batch_00000.parquet",
+      "sha256": "25dfb38a6cac467eaab0aeb1d6df3edc70dc4b8834bee9fd6c1b7c0ec3b48f19"
+    },
+    {
+      "bytes": 2879,
+      "path": "preflight_checkpoints/checkpoint_manifest.json",
+      "sha256": "5a95d3a743ebcaca65672b8f03474bc8a76e253a7181165aa9e62880fb4351d5"
+    },
+    {
+      "bytes": 5269,
+      "path": "task7a_checkpoint_audit.json",
+      "sha256": "5f3fffe407ae73566333b967bf04ff8f8bb633896d0166eea03d3b0dd4793843"
+    },
+    {
+      "bytes": 2434,
+      "path": "task7a_input_contract.json",
+      "sha256": "93c9b93207a2badab913282e02b54b0708e851ce37b34e105ff0f61ea7814647"
+    },
+    {
+      "bytes": 2320,
+      "path": "task7a_integrity_report.csv",
+      "sha256": "03312174f5a3b2d3533185ba7ee3210742449b5048aefaaa325c5bb7430b9b98"
+    },
+    {
+      "bytes": 10513,
+      "path": "task7a_preflight_results.json",
+      "sha256": "76dbe7c1bf9d537722e945fe492585362bc08c689125c976c140b3eb0231a267"
+    },
+    {
+      "bytes": 4298,
+      "path": "task7a_readiness_report.md",
+      "sha256": "c1e86f4b7f8ca8ad11abf5cec1e3c0bec1fdaad0435bf57b3d738e52922dc07d"
+    },
+    {
+      "bytes": 1278,
+      "path": "task7a_runtime_breakdown.csv",
+      "sha256": "256f1230134d768df0d655aea3f0ca2348dbcaf2cb12b03f4adb7919bdb8c454"
+    },
+    {
+      "bytes": 711,
+      "path": "task7a_storage_plan.json",
+      "sha256": "361a8106f8afca04b812fd3de8a21dadf5bd753a03c56210edb8e60887e7115a"
+    }
+  ],
+  "boundaries": {
+    "full_scale_inference": false,
+    "model_or_threshold_changed": false,
+    "retrieval_or_features_changed": false,
+    "submission_generated": false,
+    "test_data_accessed": false,
+    "test_predictions": false
+  },
+  "canonical_projected_hours": 20.017498265168324,
+  "checkpoint_resume_status": "PASS",
+  "completed_at_utc": "2026-09-26T13:09:00.583541+00:00",
+  "frozen_hashes_after": {
+    "S1": "591af0e1dfeb65cab71ea6ee8cb69df00f92d6ba6fa79e05746c938775d14973",
+    "S2": "6336c1a055eec79cf8a6d99fdc8d32a2e4d9dc2662e00963cb35d66b89ed09ed",
+    "S3": "67da22f5151898ff3006febd836c1a159e97ae95efa7257a5aff4fda685e58e9",
+    "task2_5_checkpoint": "7cbe575b7b5766860f4cd36105b09e9dff130443898ca178688d502250526ceb",
+    "task2_5_decision": "7d119628fcb630cb461272db9cb67a2c3bee510aba5560a4fcb5ac016e80183d",
+    "task2_5_manifest": "040c0118afc104e8a08aaf098c709d2b7b2cec9e4792ea2285a1dd1b6f2e3a83",
+    "task3_audit": "5ded965b5a22b705058b166e61687d4461cfb2963e30dbc03654535f4249f5ea",
+    "task3_candidates": "0eb033a43a3082cfd842c28c046dfcfd4391e02294d83f4ecbfaef5293a839d4",
+    "task3_manifest": "a69945d120a299481ff716906f797d9863ef850574137bf2b878997131870891",
+    "task3_pairs": "52779e8f186fbe7c1a139adea2a203a82768471b10df97407661e5c97bd2fc50",
+    "task3_schema": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+    "task3_split": "0e9be5210a75a7f069e1a35f6613ac4493a74bdf8762f4c8ac0ce0c81243a49d",
+    "task4a_manifest": "f383af93d7b073e4d0f22b3c6c581547c8bce028636d6b3dba62931e4929ea87",
+    "task4a_model": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0",
+    "task4a_predictions": "68fc9cd14551fdabae0a0986e97a609e2dfbef0317a90b6ffdaadd843b0a5288",
+    "task4b_manifest": "66f3adbb2dcd326bc36ba3586377192f86dfcd56ee52fd4a27f7036c3ab3fa3b",
+    "task4b_policy": "b06c07a9b9ef8c2cccb7743d2417d9be19dd5f567dc81a683839eb18ff5191ef",
+    "task5_code": "644f3fd2de196e11e0116a0fae19e1f5d6b7499123b3a7c20f7d6c2175bb70cf",
+    "task5_contract": "f45a50e1d4ff2a6b31a607185ad20d0fc1d993a4e0daed7bf4ce04c160fdb359",
+    "task6_code": "9210b0ba54e17aa4dc9bd7dc0b263652e448a5a735f9be6902e559444c9d46f4",
+    "task6_integrity": "ff83949b69c23b8d9520d94faa611f9aba1902a2e22821d1a364f6b6bb671319",
+    "task6_retrieval_manifest": "efe9723e3e1bc51e0d3fc722f94e5a621150c93ba58f4542f25003a690ce5482",
+    "task6_run_manifest": "a2356b2da11aa9d2f6a65e93665b9989a4b9cb0fc2d26e1fd10dca78f78ccbc9",
+    "task6_runtime": "b7da03390dfebd6e4ae43ada3da34ac40d3c13b337439a33fab14ca389f1f48b",
+    "task6_scale": "6ac4b7f7bac6d9e5072de200a4e99e94383a1294f51b6f9a088bc7b9c8315c7c",
+    "task6_store_manifest": "3005392d7cd81168eba8b611afd7005965c846389b1950fb3c97de5242d9fdd5",
+    "task6_summary": "cb604ed3778c1c72344fd6970c851650bc2279c4be8de2d9ecc0faafd88a4669",
+    "task7a_code": "47d6d2069edd79c01cd9d3bb9b7e6ec42ebea2534afc6307b44356ca0a4ef645"
+  },
+  "frozen_hashes_before": {
+    "S1": "591af0e1dfeb65cab71ea6ee8cb69df00f92d6ba6fa79e05746c938775d14973",
+    "S2": "6336c1a055eec79cf8a6d99fdc8d32a2e4d9dc2662e00963cb35d66b89ed09ed",
+    "S3": "67da22f5151898ff3006febd836c1a159e97ae95efa7257a5aff4fda685e58e9",
+    "task2_5_checkpoint": "7cbe575b7b5766860f4cd36105b09e9dff130443898ca178688d502250526ceb",
+    "task2_5_decision": "7d119628fcb630cb461272db9cb67a2c3bee510aba5560a4fcb5ac016e80183d",
+    "task2_5_manifest": "040c0118afc104e8a08aaf098c709d2b7b2cec9e4792ea2285a1dd1b6f2e3a83",
+    "task3_audit": "5ded965b5a22b705058b166e61687d4461cfb2963e30dbc03654535f4249f5ea",
+    "task3_candidates": "0eb033a43a3082cfd842c28c046dfcfd4391e02294d83f4ecbfaef5293a839d4",
+    "task3_manifest": "a69945d120a299481ff716906f797d9863ef850574137bf2b878997131870891",
+    "task3_pairs": "52779e8f186fbe7c1a139adea2a203a82768471b10df97407661e5c97bd2fc50",
+    "task3_schema": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+    "task3_split": "0e9be5210a75a7f069e1a35f6613ac4493a74bdf8762f4c8ac0ce0c81243a49d",
+    "task4a_manifest": "f383af93d7b073e4d0f22b3c6c581547c8bce028636d6b3dba62931e4929ea87",
+    "task4a_model": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0",
+    "task4a_predictions": "68fc9cd14551fdabae0a0986e97a609e2dfbef0317a90b6ffdaadd843b0a5288",
+    "task4b_manifest": "66f3adbb2dcd326bc36ba3586377192f86dfcd56ee52fd4a27f7036c3ab3fa3b",
+    "task4b_policy": "b06c07a9b9ef8c2cccb7743d2417d9be19dd5f567dc81a683839eb18ff5191ef",
+    "task5_code": "644f3fd2de196e11e0116a0fae19e1f5d6b7499123b3a7c20f7d6c2175bb70cf",
+    "task5_contract": "f45a50e1d4ff2a6b31a607185ad20d0fc1d993a4e0daed7bf4ce04c160fdb359",
+    "task6_code": "9210b0ba54e17aa4dc9bd7dc0b263652e448a5a735f9be6902e559444c9d46f4",
+    "task6_integrity": "ff83949b69c23b8d9520d94faa611f9aba1902a2e22821d1a364f6b6bb671319",
+    "task6_retrieval_manifest": "efe9723e3e1bc51e0d3fc722f94e5a621150c93ba58f4542f25003a690ce5482",
+    "task6_run_manifest": "a2356b2da11aa9d2f6a65e93665b9989a4b9cb0fc2d26e1fd10dca78f78ccbc9",
+    "task6_runtime": "b7da03390dfebd6e4ae43ada3da34ac40d3c13b337439a33fab14ca389f1f48b",
+    "task6_scale": "6ac4b7f7bac6d9e5072de200a4e99e94383a1294f51b6f9a088bc7b9c8315c7c",
+    "task6_store_manifest": "3005392d7cd81168eba8b611afd7005965c846389b1950fb3c97de5242d9fdd5",
+    "task6_summary": "cb604ed3778c1c72344fd6970c851650bc2279c4be8de2d9ecc0faafd88a4669",
+    "task7a_code": "47d6d2069edd79c01cd9d3bb9b7e6ec42ebea2534afc6307b44356ca0a4ef645"
+  },
+  "input_contract_status": "PASS",
+  "minimum_free_bytes_before_launch": 13683401417,
+  "native_workers": 1,
+  "peak_rss_mb": 920.109375,
+  "projected_candidate_pairs": 551687595,
+  "scope": "100-S1 training-only readiness audit",
+  "smoke_pair_rows": 25000,
+  "smoke_s1_entities": 100,
+  "smoke_total_seconds": 9.863484833000001,
+  "status": "PASS",
+  "submission_schema_status": "unresolved external contract; does not block inference",
+  "task": "Task 7A",
+  "task7b_authorized": false
+}

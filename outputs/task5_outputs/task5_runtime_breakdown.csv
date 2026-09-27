@@ -1,0 +1,22 @@
+phase,runtime_seconds,current_rss_mb,process_peak_rss_mb,detail
+raw_s1_load,1.6112475,432.484375,438.28125,
+candidate_training_sample_scan,15.73,,2679.2,Measured during the exact raw replay attempt; reused after downstream float32 score-tolerance correction.
+candidate_retrieval_model_fit,26.09,,2679.2,Measured during the exact raw replay attempt; reused after downstream float32 score-tolerance correction.
+candidate_baseline_name_index_and_query,294.51,,2679.2,Measured during the exact raw replay attempt; reused after downstream float32 score-tolerance correction.
+candidate_baseline_address_index_and_query,427.26,,2679.2,Measured during the exact raw replay attempt; reused after downstream float32 score-tolerance correction.
+candidate_name_variant_indexes_and_query,598.62,,2679.2,Measured during the exact raw replay attempt; reused after downstream float32 score-tolerance correction.
+candidate_number_index_and_query,570.83,,2679.2,Measured during the exact raw replay attempt; reused after downstream float32 score-tolerance correction.
+candidate_assembly,0.5460341660000001,536.625,536.625,
+candidate_text_store_scan,15.328459708999999,690.0625,727.4375,"required candidate records=237,411"
+training_parity_feature_replay,0.15473341599999912,695.0625,727.4375,"entities=25, pairs=6,250"
+deterministic_replay,0.39264275000000026,883.984375,883.984375,
+smoke_batch,1.4995126240000012,897.03125,897.03125,"batch_00000: entities=100, pairs=25000, feature=0.589s, model=0.896s, write=0.015s"
+smoke_batch,1.4892465410000035,897.609375,897.609375,"batch_00001: entities=100, pairs=25000, feature=0.586s, model=0.897s, write=0.006s"
+smoke_batch,1.4881427500000015,897.78125,897.859375,"batch_00002: entities=100, pairs=25000, feature=0.581s, model=0.901s, write=0.006s"
+smoke_batch,1.5091775420000033,897.921875,898.15625,"batch_00003: entities=100, pairs=24992, feature=0.602s, model=0.901s, write=0.006s"
+smoke_batch,1.5005370409999976,897.96875,898.203125,"batch_00004: entities=100, pairs=25000, feature=0.595s, model=0.899s, write=0.006s"
+smoke_batch,1.504413249999999,897.984375,898.203125,"batch_00005: entities=100, pairs=25000, feature=0.595s, model=0.903s, write=0.006s"
+smoke_batch,1.493864792,898.109375,898.359375,"batch_00006: entities=100, pairs=25000, feature=0.585s, model=0.901s, write=0.008s"
+smoke_batch,1.4820288750000046,898.359375,898.484375,"batch_00007: entities=100, pairs=25000, feature=0.579s, model=0.897s, write=0.006s"
+smoke_batch,1.508043874000002,898.359375,898.59375,"batch_00008: entities=100, pairs=25000, feature=0.598s, model=0.903s, write=0.007s"
+smoke_batch,1.479160959000012,898.359375,898.59375,"batch_00009: entities=100, pairs=25000, feature=0.579s, model=0.894s, write=0.006s"

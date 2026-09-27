@@ -1,0 +1,45 @@
+analysis_scope,error_type,segment,segment_value,count,denominator,rate,note
+overall,candidate_generation_miss,all,all,239,6693,0.0357089496488869,Unreachable by the classifier; excluded from ranking-failure counts.
+overall,retrieved_positive_rank_gt_5,all,all,699,6454,0.10830492717694452,Retrieved positive ranked below the stated within-entity cutoff.
+overall,retrieved_positive_rank_gt_10,all,all,24,6454,0.0037186241090796405,Retrieved positive ranked below the stated within-entity cutoff.
+overall,retrieved_positive_rank_gt_20,all,all,7,6454,0.0010845986984815619,Retrieved positive ranked below the stated within-entity cutoff.
+overall,retrieved_positive_probability_lt_0.1,all,all,86,6454,0.013325069724202046,Low-scoring retrieved positive.
+overall,retrieved_positive_probability_lt_0.5,all,all,184,6454,0.02850945150294391,Low-scoring retrieved positive.
+overall,negative_probability_ge_0.5,all,all,1144,493531,0.002317990156646695,High-scoring retrieved negative.
+overall,negative_probability_ge_0.9,all,all,399,493531,0.0008084598535856917,High-scoring retrieved negative.
+overall,negative_probability_ge_0.99,all,all,72,493531,0.0001458874923763654,High-scoring retrieved negative.
+overall,selected_policy_false_positive,all,all,263,493531,0.0005328945902081125,Error introduced by the selected validation decision rule.
+overall,selected_policy_false_negative_retrieved,all,all,473,6454,0.07328788348311124,Retrieved positive rejected by the selected validation decision rule.
+positive_feature_segment,positive_rank_gt_10,feature_pattern,cross_script_proxy,11,887,0.012401352874859075,Candidate-generation misses excluded.
+positive_feature_segment,selected_policy_false_negative,feature_pattern,cross_script_proxy,95,887,0.10710259301014656,Candidate-generation misses excluded.
+positive_feature_segment,positive_rank_gt_10,feature_pattern,missing_candidate_address,7,216,0.032407407407407406,Candidate-generation misses excluded.
+positive_feature_segment,selected_policy_false_negative,feature_pattern,missing_candidate_address,85,216,0.39351851851851855,Candidate-generation misses excluded.
+positive_feature_segment,positive_rank_gt_10,feature_pattern,conflicting_address_numbers,12,1419,0.008456659619450317,Candidate-generation misses excluded.
+positive_feature_segment,selected_policy_false_negative,feature_pattern,conflicting_address_numbers,255,1419,0.17970401691331925,Candidate-generation misses excluded.
+positive_feature_segment,positive_rank_gt_10,feature_pattern,transliteration_dependent,9,534,0.016853932584269662,Candidate-generation misses excluded.
+positive_feature_segment,selected_policy_false_negative,feature_pattern,transliteration_dependent,65,534,0.12172284644194757,Candidate-generation misses excluded.
+positive_feature_segment,positive_rank_gt_10,feature_pattern,legal_suffix_dependent,3,1584,0.001893939393939394,Candidate-generation misses excluded.
+positive_feature_segment,selected_policy_false_negative,feature_pattern,legal_suffix_dependent,103,1584,0.06502525252525253,Candidate-generation misses excluded.
+positive_feature_segment,positive_rank_gt_10,feature_pattern,weak_retrieval_consensus,13,279,0.04659498207885305,Candidate-generation misses excluded.
+positive_feature_segment,selected_policy_false_negative,feature_pattern,weak_retrieval_consensus,92,279,0.32974910394265233,Candidate-generation misses excluded.
+negative_feature_segment,selected_policy_false_positive,feature_pattern,near_identical_name_and_address,49,428,0.11448598130841121,High-risk retrieved-negative segment.
+negative_feature_segment,selected_policy_false_positive,feature_pattern,conflicting_address_numbers,92,403731,0.00022787450059569368,High-risk retrieved-negative segment.
+negative_feature_segment,selected_policy_false_positive,feature_pattern,multiple_retrieval_signals,79,786,0.1005089058524173,High-risk retrieved-negative segment.
+candidate_source,selected_policy_false_positive,candidate_source,S2,141,286255,0.0004925678154093378,Retrieved candidates only.
+candidate_source,selected_policy_false_negative_retrieved,candidate_source,S2,218,3129,0.0696708213486737,Retrieved candidates only.
+candidate_source,retrieved_positive_rank_gt_10,candidate_source,S2,15,3129,0.004793863854266539,Retrieved candidates only.
+candidate_source,selected_policy_false_positive,candidate_source,S3,122,207276,0.0005885871977460005,Retrieved candidates only.
+candidate_source,selected_policy_false_negative_retrieved,candidate_source,S3,255,3325,0.07669172932330827,Retrieved candidates only.
+candidate_source,retrieved_positive_rank_gt_10,candidate_source,S3,9,3325,0.002706766917293233,Retrieved candidates only.
+match_group,selected_policy_false_positive,match_group,1,85,124504,0.000682708989269421,Retrieved candidates only.
+match_group,selected_policy_false_negative_retrieved,match_group,1,37,481,0.07692307692307693,Retrieved candidates only.
+match_group,retrieved_positive_rank_gt_10,match_group,1,1,481,0.002079002079002079,Retrieved candidates only.
+match_group,selected_policy_false_positive,match_group,2,69,124033,0.0005563035643739973,Retrieved candidates only.
+match_group,selected_policy_false_negative_retrieved,match_group,2,67,967,0.06928645294725956,Retrieved candidates only.
+match_group,retrieved_positive_rank_gt_10,match_group,2,4,967,0.004136504653567736,Retrieved candidates only.
+match_group,selected_policy_false_positive,match_group,3-5,53,123100,0.0004305442729488221,Retrieved candidates only.
+match_group,selected_policy_false_negative_retrieved,match_group,3-5,147,1900,0.07736842105263157,Retrieved candidates only.
+match_group,retrieved_positive_rank_gt_10,match_group,3-5,6,1900,0.003157894736842105,Retrieved candidates only.
+match_group,selected_policy_false_positive,match_group,6+,56,121894,0.00045941555777971024,Retrieved candidates only.
+match_group,selected_policy_false_negative_retrieved,match_group,6+,222,3106,0.07147456535737283,Retrieved candidates only.
+match_group,retrieved_positive_rank_gt_10,match_group,6+,13,3106,0.004185447520927237,Retrieved candidates only.

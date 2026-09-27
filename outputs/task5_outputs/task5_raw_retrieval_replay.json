@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "raw_replay_entity_count": 1000,
+  "retrieval_signal_checks_passed": 10,
+  "retrieval_signal_checks_total": 10,
+  "candidate_ids_and_scores_exact": true,
+  "candidate_counts_ids_and_order_exact": true,
+  "parity_report_sha256": "1b590b45939fac8a7a4c27a150ad8efe3790792d84ca35e586e28c67bc25e090",
+  "task2_5_checkpoint_sha256": "7cbe575b7b5766860f4cd36105b09e9dff130443898ca178688d502250526ceb",
+  "retrieval_index_build_seconds": 1853.9,
+  "retrieval_query_seconds": 2.7,
+  "measured_raw_replay_runtime_seconds": 1950.91,
+  "peak_rss_mb": 2679.2,
+  "measured_phase_timings": [
+    {
+      "phase": "candidate_training_sample_scan",
+      "runtime_seconds": 15.73
+    },
+    {
+      "phase": "candidate_retrieval_model_fit",
+      "runtime_seconds": 26.09
+    },
+    {
+      "phase": "candidate_baseline_name_index_and_query",
+      "runtime_seconds": 294.51
+    },
+    {
+      "phase": "candidate_baseline_address_index_and_query",
+      "runtime_seconds": 427.26
+    },
+    {
+      "phase": "candidate_name_variant_indexes_and_query",
+      "runtime_seconds": 598.62
+    },
+    {
+      "phase": "candidate_number_index_and_query",
+      "runtime_seconds": 570.83
+    }
+  ],
+  "note": "Measured during the completed raw S1/S2/S3 replay. The run stopped only because fresh float64 LightGBM scores were initially compared with saved float32 Task 4A scores at an overly strict 1e-12 tolerance. All retrieval IDs/scores, assembled candidates, 66 features, and threshold decisions passed."
+}

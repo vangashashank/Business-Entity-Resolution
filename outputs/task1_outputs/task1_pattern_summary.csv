@@ -1,0 +1,6 @@
+pattern,link_count,percent_of_sampled_positive_links
+Same normalized name + different normalized address,14,16.28
+Address formatting/punctuation differences only,7,8.14
+Different normalized name + same normalized address,7,8.14
+Missing address in S1 or matched record,4,4.65
+Different normalized country,0,0.0

@@ -1,0 +1,10 @@
+failure_pattern,sampled_missed_positive_links
+address_number_difference,27
+script_or_transliteration_difference,20
+very_different_name,15
+missing_address,9
+lexical_rank_beyond_budget,7
+legal_suffix_variation,6
+common_exact_name,4
+very_different_address,1
+name_number_difference,1

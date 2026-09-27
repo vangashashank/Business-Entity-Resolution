@@ -1,0 +1,13 @@
+phase,runtime_seconds,scaling_basis,current_rss_mb,process_peak_rss_mb,detail,category
+input_source_hash_validation,0.07126633400000015,fixed startup/source bytes,385.9375,436.15625,,
+artifact_hash_validation,2.6354680419999994,fixed startup/persistent bytes,310.578125,436.15625,,
+preflight_retrieval_bundle_load,0.7945734990000011,,718.953125,756.09375,Deserialize ten fitted transform objects and ten FAISS indexes.,reload-only
+preflight_retrieval_query,1.0928066249999997,,718.953125,756.09375,Query five frozen signals for 100 S1 entities.,reload-only
+candidate_assembly,0.05747858299999997,S1 and candidate-pair count,817.375,817.375,,
+candidate_store_initialization,1.6834000000187643e-05,fixed startup,810.515625,817.375,,
+candidate_text_lookup,3.2486440000000005,unique candidate IDs/candidate-pair count,750.28125,817.375,,
+feature_generation,0.6307456249999994,candidate-pair count,755.671875,817.375,,
+lightgbm_inference,0.8627696250000003,candidate-pair count,755.671875,817.375,,
+checkpoint_write,0.01670700000000025,output row/byte count,755.671875,817.375,,
+total_preflight_smoke,9.863484833000001,100-S1 controlled smoke,758.921875,817.375,,
+frozen_prediction_parity_validation,2.343818958,validation-only; excluded from production total,914.34375,920.109375,,

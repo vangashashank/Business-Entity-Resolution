@@ -1,0 +1,10 @@
+configuration,baseline_positive_hits,baseline_positive_misses,recovered_baseline_misses,recovery_rate_of_baseline_misses,lost_baseline_hits,net_positive_link_gain
+"Existing all signals ranked, K=100",31130,2155,6,0.0027842227378190253,710,-704
+Baseline + transliteration union,31130,2155,421,0.19535962877030164,0,421
+Baseline + address-number union,31130,2155,901,0.41809744779582364,0,901
+Baseline + missing-address handling,31130,2155,0,0.0,0,0
+Baseline + legal-suffix union,31130,2155,309,0.14338747099767982,0,309
+Combined improved union,31130,2155,1254,0.5819025522041763,0,1254
+"Combined improved ranked, cap=100",31130,2155,681,0.3160092807424594,655,26
+"Combined improved ranked, cap=200",31130,2155,1126,0.5225058004640372,173,953
+"Combined baseline-preserving augmentation, cap=250",31130,2155,1122,0.5206496519721577,0,1122

@@ -1,0 +1,16 @@
+stage,check,passed,compared_values,mismatch_count,maximum_absolute_difference,mean_absolute_difference,tolerance,detail
+candidate_text_store,ids,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,raw_name,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,raw_address,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,normalized_name,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,transliterated_name,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,suffix_name,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,normalized_address,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,number_sequence,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,normalized_country,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,name_non_ascii,True,6250,0,0.0,0.0,exact,Persisted selective lookup versus direct raw S2/S3 normalization.
+candidate_text_store,candidate_source,True,6250,0,0.0,0.0,exact,Persisted source column versus the frozen encoded-ID source mapping.
+feature_generation,pair_keys_and_order,True,6250,0,0.0,0.0,exact,
+feature_generation,all_66_feature_values,True,412500,0,0.0,0.0,"float atol=1e-06, rtol=1e-06; integer/bool exact",
+model_scoring,lightgbm_scores,True,6250,0,2.9774050225306326e-08,2.547817724455915e-10,absolute <= 5e-08,
+decision_policy,score_ge_0.95,True,6250,0,0.0,0.0,exact,

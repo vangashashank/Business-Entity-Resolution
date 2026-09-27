@@ -1,0 +1,92 @@
+{
+  "atomic_commit": "write temporary Parquet, os.replace final file, then atomic manifest update",
+  "batch_boundaries": [
+    {
+      "batch_id": "batch_00000",
+      "entity_count": 50,
+      "entity_ids_sha256": "3555900af68cc7d1fe22dbe08e742f2d35955f636b83cc3ceedb968c326c10fb",
+      "first_source1_entity_id": "S1-34271266",
+      "last_source1_entity_id": "S1-36067158",
+      "start_entity_offset": 0,
+      "stop_entity_offset": 50
+    },
+    {
+      "batch_id": "batch_00001",
+      "entity_count": 50,
+      "entity_ids_sha256": "a0eebc635a30ce36446aa8ef6eeb98e51e6674b98c917fe7218a81ea20889c85",
+      "first_source1_entity_id": "S1-835240540",
+      "last_source1_entity_id": "S1-941442245",
+      "start_entity_offset": 50,
+      "stop_entity_offset": 100
+    }
+  ],
+  "batch_size": 50,
+  "candidate_cap": 250,
+  "candidate_store_manifest_sha256": "3005392d7cd81168eba8b611afd7005965c846389b1950fb3c97de5242d9fdd5",
+  "completed_batches": {
+    "batch_00000": {
+      "batch_id": "batch_00000",
+      "bytes": 218044,
+      "committed_at_utc": "2026-09-26T13:08:59.110474+00:00",
+      "entity_count": 50,
+      "entity_ids_sha256": "3555900af68cc7d1fe22dbe08e742f2d35955f636b83cc3ceedb968c326c10fb",
+      "feature_seconds": 0.31177787499999887,
+      "first_source1_entity_id": "S1-34271266",
+      "last_source1_entity_id": "S1-36067158",
+      "model_seconds": 0.4291591669999999,
+      "output_schema_sha256": "994cc73f46c32fd33449eaf65149f54064167b22d727a8f805d490da9ddf27bc",
+      "pair_rows": 12500,
+      "predicted_links": 159,
+      "sha256": "57375b453bb444fef7c24e4a0d8f4311d1086e206256ebd9b0a1e7210e4c6ccb",
+      "start_entity_offset": 0,
+      "stop_entity_offset": 50,
+      "write_seconds": 0.00416562499999884
+    },
+    "batch_00001": {
+      "batch_id": "batch_00001",
+      "bytes": 217853,
+      "committed_at_utc": "2026-09-26T13:08:59.980253+00:00",
+      "entity_count": 50,
+      "entity_ids_sha256": "a0eebc635a30ce36446aa8ef6eeb98e51e6674b98c917fe7218a81ea20889c85",
+      "feature_seconds": 0.3164634589999977,
+      "first_source1_entity_id": "S1-835240540",
+      "last_source1_entity_id": "S1-941442245",
+      "model_seconds": 0.5229399160000021,
+      "output_schema_sha256": "994cc73f46c32fd33449eaf65149f54064167b22d727a8f805d490da9ddf27bc",
+      "pair_rows": 12500,
+      "predicted_links": 177,
+      "sha256": "019d8e741ad7158680566246ad73093b316fd4d3dc833447b66bdb00c5324ff1",
+      "start_entity_offset": 50,
+      "stop_entity_offset": 100,
+      "write_seconds": 0.003860625000001505
+    }
+  },
+  "contract_version": "task7a-checkpoint-v1",
+  "created_at_utc": "2026-09-26T13:08:58.362544+00:00",
+  "feature_schema_sha256": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+  "model_sha256": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0",
+  "output_columns": [
+    "source1_entity_id",
+    "candidate_entity_id",
+    "candidate_source",
+    "lightgbm_score",
+    "predicted_match",
+    "candidate_position",
+    "batch_id"
+  ],
+  "output_schema_sha256": "994cc73f46c32fd33449eaf65149f54064167b22d727a8f805d490da9ddf27bc",
+  "resume_rule": "Only manifest-recorded batches with matching byte size, SHA-256, schema, boundaries, and decisions are complete.",
+  "retrieval_configuration": "Combined baseline-preserving augmentation, cap=250",
+  "retrieval_manifest_sha256": "efe9723e3e1bc51e0d3fc722f94e5a621150c93ba58f4542f25003a690ce5482",
+  "run_contract_sha256": "5c201c81370330ce5f748069ea219e992422626d2709d4d1f8e8ecb2724e270e",
+  "source_input": {
+    "basename": "train_source1.tsv",
+    "bytes": 210069713,
+    "full_source_row_count": 2206821,
+    "selected_ordered_entity_id_sha256": "3fbcf7a4f520b6e43e8be2e6535dc076e0df281d9a95c6220bd85ad20ab51999",
+    "selected_row_count": 100,
+    "sha256": "591af0e1dfeb65cab71ea6ee8cb69df00f92d6ba6fa79e05746c938775d14973"
+  },
+  "task5_inference_contract_sha256": "f45a50e1d4ff2a6b31a607185ad20d0fc1d993a4e0daed7bf4ce04c160fdb359",
+  "threshold": 0.95
+}

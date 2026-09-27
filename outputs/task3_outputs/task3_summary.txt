@@ -1,0 +1,77 @@
+TASK 3 - PAIRWISE FEATURE ENGINEERING AND ANALYSIS
+
+Scope
+-----
+Training data only. Frozen Task 2.5 candidates were reconstructed exactly from the saved checkpoint.
+No matching classifier, threshold, probability calibration, test prediction, or submission was created.
+
+Pair dataset
+------------
+Pair rows: 2,499,947
+Positive pairs: 32,252
+Negative pairs: 2,467,695
+Positive rate: 1.290107%
+Negatives per positive: 76.51
+Ground-truth links missed by candidate generation and excluded from pair labels: 1,033
+
+Entity split
+------------
+train: S1=8,000, pairs=1,999,962, positives=25,798, negatives=1,974,164, positive rate=1.289925%
+validation: S1=2,000, pairs=499,985, positives=6,454, negatives=493,531, positive rate=1.290839%
+
+Strongest-looking descriptive features
+---------------------------------------
+retrieval_best_rank: positive mean=3.2590, negative mean=42.8725, descriptive |AUC|=0.9725
+retrieval_rrf_score_top100: positive mean=0.0563, negative mean=0.0154, descriptive |AUC|=0.9613
+independent_strong_signal_count: positive mean=3.7513, negative mean=0.8350, descriptive |AUC|=0.9310
+address_token_jaccard: positive mean=0.6077, negative mean=0.1429, descriptive |AUC|=0.9238
+address_char3_jaccard: positive mean=0.6537, negative mean=0.1713, descriptive |AUC|=0.9230
+address_token_set: positive mean=0.8830, negative mean=0.5335, descriptive |AUC|=0.9133
+address_token_sort: positive mean=0.8219, negative mean=0.4801, descriptive |AUC|=0.9127
+retrieval_signal_count_top100: positive mean=3.7434, negative mean=1.5221, descriptive |AUC|=0.9055
+retrieval_best_score: positive mean=0.9530, negative mean=0.7084, descriptive |AUC|=0.8916
+name_address_similarity_product: positive mean=0.7649, negative mean=0.2630, descriptive |AUC|=0.8916
+retrieval_signal_count_top250: positive mean=3.9037, negative mean=1.7706, descriptive |AUC|=0.8914
+number_address_score: positive mean=0.7039, negative mean=0.1352, descriptive |AUC|=0.8872
+
+Weak or constant descriptive features
+-------------------------------------
+both_addresses_missing: descriptive |AUC|=0.5000, constant=True
+s1_address_missing: descriptive |AUC|=0.5000, constant=True
+s1_name_missing: descriptive |AUC|=0.5000, constant=True
+s1_name_non_ascii: descriptive |AUC|=0.5000, constant=True
+candidate_name_missing: descriptive |AUC|=0.5000, constant=False
+transliteration_rescue: descriptive |AUC|=0.5007, constant=False
+s1_address_has_numbers: descriptive |AUC|=0.5011, constant=False
+transliteration_levenshtein_gain: descriptive |AUC|=0.5024, constant=False
+candidate_address_has_numbers: descriptive |AUC|=0.5040, constant=False
+both_addresses_present: descriptive |AUC|=0.5089, constant=False
+
+Redundancy
+----------
+Feature pairs with |Spearman| >= 0.95: 15
+Jaro was excluded before the full run because the pilot found 0.998-0.999 correlation with Jaro-Winkler.
+Indel ratio was excluded because it overlapped strongly with normalized Levenshtein.
+No new pairwise TF-IDF was fit; frozen retrieval scores retain that fitted signal without split leakage.
+
+Positive retrieval groups
+-------------------------
+task2_5_recovered: links=1,122, S2=355, S3=767, group6+=555
+task2_5_still_missed: links=1,033, S2=413, S3=620, group6+=516
+task2_baseline_retrieved: links=31,130, S2=15,369, S3=15,761, group6+=15,072
+
+Runtime and storage
+-------------------
+Total runtime: 2.03 minutes
+Peak process RSS: 2221.0 MB
+Pair feature Parquet: 147.6 MB
+
+Validation
+----------
+Passed checks: 10/10
+
+Task 4 recommendation
+---------------------
+Start with a class-weighted gradient-boosted tree baseline on the frozen entity split, using the recommended deterministic similarities, numeric-address features, missingness, source, and retrieval evidence. Keep a regularized logistic-regression model only as a linear benchmark. Evaluate pair ranking and entity-level outcomes on validation, then select a decision threshold only in Task 4.
+
+STOP: Task 3 ends with features, analysis, audits, and split preparation.

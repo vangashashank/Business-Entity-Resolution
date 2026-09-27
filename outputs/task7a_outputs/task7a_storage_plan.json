@@ -1,0 +1,14 @@
+{
+  "combined_expected_bytes": 16403940800,
+  "current_filesystem_free_bytes": 338137432064,
+  "persistent_candidate_store_bytes": 3118899200,
+  "persistent_retrieval_bundle_bytes": 3702625383,
+  "persistent_total_bytes": 6821524583,
+  "preflight_passed": true,
+  "preflight_rule": "With Task 6 persistent state already present, free space must cover projected checkpoints plus 25% of the combined persistent-and-checkpoint footprint.",
+  "projected_checkpoint_bytes": 9582416217,
+  "recommended_additional_safety_margin_bytes": 4100985200,
+  "recommended_minimum_free_bytes_before_launch": 13683401417,
+  "recommended_total_capacity_bytes_for_fresh_deployment": 20504926000,
+  "safety_margin_fraction": 0.25
+}

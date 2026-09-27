@@ -1,0 +1,37 @@
+{
+  "forbidden_inputs_confirmed_absent": [
+    "match_group",
+    "ground_truth_match_count",
+    "label"
+  ],
+  "inference_inputs": [
+    "LightGBM pair score"
+  ],
+  "parameters": {
+    "probability_threshold": 0.95
+  },
+  "rule_family": "global_probability_threshold",
+  "rule_name": "global_p_ge_0.95",
+  "selection_method": "Among rules within 1.0 percentage point of the best end-to-end complete entity rate, maximize end-to-end link F1, then prefer fewer false positives and lower rule complexity. This avoids forcing low-score top candidates for a marginal complete-set gain.",
+  "validation_metrics": {
+    "average_predicted_matches_per_entity": 3.122,
+    "candidate_generation_missed_links": 239,
+    "complete_entity_match_rate_end_to_end": 0.652,
+    "complete_entity_match_rate_retrieved": 0.7135,
+    "complete_entity_matches_end_to_end": 1304,
+    "complete_entity_matches_retrieved": 1427,
+    "complexity_order": 1,
+    "entities_with_zero_predictions": 54,
+    "f1_end_to_end": 0.9246347684934684,
+    "f1_retrieved": 0.9420381162387778,
+    "false_negative_end_to_end_links": 712,
+    "false_negative_retrieved_links": 473,
+    "false_positive_links": 263,
+    "precision": 0.9578795643818065,
+    "predicted_links": 6244,
+    "recall_end_to_end": 0.8936202002091738,
+    "recall_retrieved": 0.9267121165168888,
+    "true_positive_links": 5981
+  },
+  "validation_only_selection": true
+}

@@ -1,0 +1,117 @@
+{
+  "classifier_work_performed": false,
+  "entity_split": {
+    "random_state": 42,
+    "train_entities": 8000,
+    "validation_entities": 2000,
+    "validation_fraction": 0.2
+  },
+  "evaluation_entities": 10000,
+  "feature_columns_including_metadata": 98,
+  "frozen_configuration": "Combined baseline-preserving augmentation, cap=250",
+  "frozen_metrics": {
+    "average_candidates": 249.9947,
+    "complete_recall": 0.9159,
+    "configuration": "Combined baseline-preserving augmentation, cap=250",
+    "evaluation_entities": 10000,
+    "link_recall": 0.9689649992489109,
+    "maximum_candidates": 250,
+    "median_candidates": 250.0,
+    "minimum_candidates": 241,
+    "missed_positive_links": 1033,
+    "p95_candidates": 250.0,
+    "pair_rows": 2499947,
+    "positive_links": 33285,
+    "recall_by_match_group": {
+      "1": {
+        "complete_recall": 0.9664,
+        "link_recall": 0.9664
+      },
+      "2": {
+        "complete_recall": 0.9408,
+        "link_recall": 0.9686
+      },
+      "3-5": {
+        "complete_recall": 0.9092,
+        "link_recall": 0.9713752333540759
+      },
+      "6+": {
+        "complete_recall": 0.8472,
+        "link_recall": 0.9680356811001672
+      }
+    },
+    "retrieved_positive_links": 32252,
+    "s2_link_recall": 0.9744066431182996,
+    "s3_link_recall": 0.9638441800793095
+  },
+  "missed_positive_dataset_mb": 0.1455249786376953,
+  "missed_positive_links": 1033,
+  "negative_pairs": 2467695,
+  "pair_dataset_mb": 147.55218124389648,
+  "pair_feature_parquet_sha256": "52779e8f186fbe7c1a139adea2a203a82768471b10df97407661e5c97bd2fc50",
+  "pair_rows": 2499947,
+  "peak_rss_mb": 2221.0,
+  "positive_pairs": 32252,
+  "probability_calibration_performed": false,
+  "recommended_predictive_features": 66,
+  "smoke_validation": {
+    "classifier_work_performed": false,
+    "duplicate_pairs": 0,
+    "feature_columns": 98,
+    "frozen_global_metrics": {
+      "average_candidates": 249.9947,
+      "complete_recall": 0.9159,
+      "configuration": "Combined baseline-preserving augmentation, cap=250",
+      "evaluation_entities": 10000,
+      "link_recall": 0.9689649992489109,
+      "maximum_candidates": 250,
+      "median_candidates": 250.0,
+      "minimum_candidates": 241,
+      "missed_positive_links": 1033,
+      "p95_candidates": 250.0,
+      "pair_rows": 2499947,
+      "positive_links": 33285,
+      "recall_by_match_group": {
+        "1": {
+          "complete_recall": 0.9664,
+          "link_recall": 0.9664
+        },
+        "2": {
+          "complete_recall": 0.9408,
+          "link_recall": 0.9686
+        },
+        "3-5": {
+          "complete_recall": 0.9092,
+          "link_recall": 0.9713752333540759
+        },
+        "6+": {
+          "complete_recall": 0.8472,
+          "link_recall": 0.9680356811001672
+        }
+      },
+      "retrieved_positive_links": 32252,
+      "s2_link_recall": 0.9744066431182996,
+      "s3_link_recall": 0.9638441800793095
+    },
+    "numeric_nan_count": 0,
+    "peak_rss_mb": 628.4375,
+    "runtime_seconds": 14.062538542,
+    "smoke_pairs": 5000,
+    "smoke_positive_pairs": 64,
+    "smoke_s1_entities": 20,
+    "split_train_entities": 8000,
+    "split_validation_entities": 2000,
+    "status": "passed",
+    "test_data_used": false,
+    "training_only": true
+  },
+  "submission_created": false,
+  "task2_5_checkpoint_sha256": "7cbe575b7b5766860f4cd36105b09e9dff130443898ca178688d502250526ceb",
+  "task2_eval_sha256": "f9379147e517b1032cf4199c5276a979465c70f501fb5c870a64ac12f7851e27",
+  "task3_candidate_checkpoint_sha256": "0eb033a43a3082cfd842c28c046dfcfd4391e02294d83f4ecbfaef5293a839d4",
+  "test_data_used": false,
+  "test_predictions_created": false,
+  "threshold_tuning_performed": false,
+  "total_runtime_seconds": 122.00267941599999,
+  "training_only": true
+}

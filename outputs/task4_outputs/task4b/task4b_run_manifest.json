@@ -1,0 +1,149 @@
+{
+  "ablation_variants": {
+    "full_66_existing": [],
+    "remove_all_retrieval_evidence": [
+      "baseline_name_rank",
+      "baseline_name_rank_missing",
+      "baseline_name_score",
+      "baseline_address_rank",
+      "baseline_address_rank_missing",
+      "baseline_address_score",
+      "transliterated_name_rank",
+      "transliterated_name_rank_missing",
+      "transliterated_name_score",
+      "number_address_rank",
+      "number_address_rank_missing",
+      "number_address_score",
+      "suffix_name_rank",
+      "suffix_name_rank_missing",
+      "suffix_name_score",
+      "retrieval_signal_count_top100",
+      "retrieval_best_rank",
+      "retrieval_mean_rank_present",
+      "retrieval_best_score",
+      "retrieval_rrf_score_top100",
+      "frozen_candidate_position",
+      "task2_baseline_member"
+    ],
+    "remove_direct_position_features": [
+      "baseline_name_rank",
+      "baseline_name_rank_missing",
+      "baseline_address_rank",
+      "baseline_address_rank_missing",
+      "transliterated_name_rank",
+      "transliterated_name_rank_missing",
+      "number_address_rank",
+      "number_address_rank_missing",
+      "suffix_name_rank",
+      "suffix_name_rank_missing",
+      "retrieval_best_rank",
+      "retrieval_mean_rank_present",
+      "retrieval_rrf_score_top100",
+      "frozen_candidate_position"
+    ],
+    "remove_retrieval_best_rank": [
+      "retrieval_best_rank"
+    ]
+  },
+  "baseline_reused_without_retraining": true,
+  "calibration_diagnostics": {
+    "brier_score": 0.0020322150085121393,
+    "expected_calibration_error": 0.0025069475049291647
+  },
+  "candidate_generation_modified": false,
+  "decision_rules_evaluated": 69,
+  "fixed_ablation_iterations": 1489,
+  "full_scale_inference_started": false,
+  "hashes_after": {
+    "candidate_checkpoint": "7cbe575b7b5766860f4cd36105b09e9dff130443898ca178688d502250526ceb",
+    "entity_split": "0e9be5210a75a7f069e1a35f6613ac4493a74bdf8762f4c8ac0ce0c81243a49d",
+    "pairs": "52779e8f186fbe7c1a139adea2a203a82768471b10df97407661e5c97bd2fc50",
+    "schema": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+    "task4a_manifest": "f383af93d7b073e4d0f22b3c6c581547c8bce028636d6b3dba62931e4929ea87",
+    "task4a_model": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0",
+    "task4a_predictions": "68fc9cd14551fdabae0a0986e97a609e2dfbef0317a90b6ffdaadd843b0a5288"
+  },
+  "hashes_before": {
+    "candidate_checkpoint": "7cbe575b7b5766860f4cd36105b09e9dff130443898ca178688d502250526ceb",
+    "entity_split": "0e9be5210a75a7f069e1a35f6613ac4493a74bdf8762f4c8ac0ce0c81243a49d",
+    "pairs": "52779e8f186fbe7c1a139adea2a203a82768471b10df97407661e5c97bd2fc50",
+    "schema": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+    "task4a_manifest": "f383af93d7b073e4d0f22b3c6c581547c8bce028636d6b3dba62931e4929ea87",
+    "task4a_model": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0",
+    "task4a_predictions": "68fc9cd14551fdabae0a0986e97a609e2dfbef0317a90b6ffdaadd843b0a5288"
+  },
+  "integrity_checks": {
+    "candidate_misses_reconciled": true,
+    "entity_split_unchanged": true,
+    "group_totals_reconcile": true,
+    "match_group_not_used_by_rule": true,
+    "no_ground_truth_feature_used": true,
+    "no_test_data_accessed": true,
+    "same_entity_split_counts": true,
+    "source_totals_reconcile": true,
+    "task2_5_candidate_artifacts_unchanged": true,
+    "task3_pair_features_unchanged": true,
+    "task3_schema_unchanged": true,
+    "task4a_manifest_unchanged": true,
+    "task4a_model_unchanged": true,
+    "task4a_predictions_unchanged": true,
+    "zero_s1_overlap": true
+  },
+  "model_family": "LightGBM only",
+  "peak_rss_mb": 2694.15625,
+  "random_state": 42,
+  "runtime_seconds": 238.578821333,
+  "selected_policy": {
+    "forbidden_inputs_confirmed_absent": [
+      "match_group",
+      "ground_truth_match_count",
+      "label"
+    ],
+    "inference_inputs": [
+      "LightGBM pair score"
+    ],
+    "parameters": {
+      "probability_threshold": 0.95
+    },
+    "rule_family": "global_probability_threshold",
+    "rule_name": "global_p_ge_0.95",
+    "selection_method": "Among rules within 1.0 percentage point of the best end-to-end complete entity rate, maximize end-to-end link F1, then prefer fewer false positives and lower rule complexity. This avoids forcing low-score top candidates for a marginal complete-set gain.",
+    "validation_metrics": {
+      "average_predicted_matches_per_entity": 3.122,
+      "candidate_generation_missed_links": 239,
+      "complete_entity_match_rate_end_to_end": 0.652,
+      "complete_entity_match_rate_retrieved": 0.7135,
+      "complete_entity_matches_end_to_end": 1304,
+      "complete_entity_matches_retrieved": 1427,
+      "complexity_order": 1,
+      "entities_with_zero_predictions": 54,
+      "f1_end_to_end": 0.9246347684934684,
+      "f1_retrieved": 0.9420381162387778,
+      "false_negative_end_to_end_links": 712,
+      "false_negative_retrieved_links": 473,
+      "false_positive_links": 263,
+      "precision": 0.9578795643818065,
+      "predicted_links": 6244,
+      "recall_end_to_end": 0.8936202002091738,
+      "recall_retrieved": 0.9267121165168888,
+      "true_positive_links": 5981
+    },
+    "validation_only_selection": true
+  },
+  "smoke_only": false,
+  "submission_created": false,
+  "task": "Task 4B",
+  "task3_features_modified": false,
+  "task4a_artifacts_modified": false,
+  "test_data_used": false,
+  "test_predictions_created": false,
+  "training_only": true,
+  "versions": {
+    "lightgbm": "4.6.0",
+    "numpy": "2.0.2",
+    "pandas": "2.3.3",
+    "pyarrow": "17.0.0",
+    "python": "3.9.6",
+    "scikit_learn": "1.6.1"
+  }
+}

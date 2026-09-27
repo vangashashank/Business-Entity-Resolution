@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local/vendor dependencies
+.task2_5_vendor/
+.task3_vendor/
+.task4_vendor/
+
+# Raw downloaded archives
+*.zip
+
+# Raw competition dataset
+student_resource/dataset/
+
+# Large generated ML artifacts
+*.faiss
+*.sqlite
+*.npz
+*.npy
+*.parquet
+*.pkl
+*.pickle
+*.joblib
+
+# Model/checkpoint artifacts
+**/checkpoints/
+
+# Logs/temp
+*.log
+*.tmp
+
+*.sqlite-shm
+*.sqlite-wal

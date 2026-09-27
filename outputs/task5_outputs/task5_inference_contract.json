@@ -1,0 +1,874 @@
+{
+  "batching": {
+    "atomic_write": "write .tmp Parquet and os.replace into final batch path",
+    "boundary_rule": "input order partitioned into fixed contiguous batches",
+    "completed_batch_tracking": "checkpoint_manifest.json with batch hashes and row counts",
+    "duplicate_prevention_key": [
+      "source1_entity_id",
+      "candidate_entity_id"
+    ],
+    "failure_behavior": "raise; never mark or silently skip a failed batch",
+    "initial_s1_batch_size": 100,
+    "resume_behavior": "verify completed batch hash/schema/count, skip it, and continue"
+  },
+  "candidate_generator": {
+    "candidate_cap": 250,
+    "candidate_ordering": "baseline normalized-name top-100 followed by unseen normalized-address top-100, then unseen candidates by reciprocal-rank fusion over all five signals until cap 250",
+    "configuration": "Combined baseline-preserving augmentation, cap=250",
+    "country_blocking": true,
+    "normalization_source_hashes": {
+      "task2_5_candidate_selection.py": "c5e8c61b1754a483834d48d36927d78bb03803c4d70b3a9bf4dd03f543bb5660",
+      "task2_candidate_generation.py": "3b9aa38701ec96fb838201747d0be6d40dca5645881b3245ae98a0c3ef47895c"
+    },
+    "retrieval_parameters": {
+      "baseline_search_k": 1000,
+      "max_features": 32768,
+      "new_signal_search_k": 250,
+      "nlist": 2048,
+      "nprobe": 64,
+      "pq_m": 64,
+      "projection_dim": 256
+    },
+    "rrf_constant": 60.0,
+    "signals": [
+      {
+        "name": "baseline_name",
+        "normalization": "task2_candidate_generation.normalize_series",
+        "query_depth": 1000,
+        "raw_field": "business_name",
+        "stored_depth": 250
+      },
+      {
+        "name": "baseline_address",
+        "normalization": "task2_candidate_generation.normalize_series",
+        "query_depth": 1000,
+        "raw_field": "business_address",
+        "stored_depth": 250
+      },
+      {
+        "name": "transliterated_name",
+        "normalization": "task2_5_candidate_selection.transliterate_series",
+        "query_depth": 250,
+        "raw_field": "business_name",
+        "stored_depth": 250
+      },
+      {
+        "name": "number_address",
+        "normalization": "task2_5_candidate_selection.address_number_series",
+        "query_depth": 250,
+        "raw_field": "business_address",
+        "stored_depth": 250
+      },
+      {
+        "name": "suffix_name",
+        "normalization": "task2_5_candidate_selection.strip_legal_suffix_series",
+        "query_depth": 250,
+        "raw_field": "business_name",
+        "stored_depth": 250
+      }
+    ]
+  },
+  "contract_version": "task5-v1",
+  "created_date": "2026-09-26",
+  "decision_policy": {
+    "comparison": "score >= 0.95",
+    "policy_sha256": "b06c07a9b9ef8c2cccb7743d2417d9be19dd5f567dc81a683839eb18ff5191ef",
+    "rule": "global_p_ge_0.95",
+    "threshold": 0.95
+  },
+  "features": {
+    "count": 66,
+    "feature_implementation_hash": "469bd02f3c444cd06f30c9dd0b096e118efa086ee2d859ebd700c2ce109ec371",
+    "feature_source": "outputs/task3_outputs/task3_feature_schema.csv",
+    "feature_source_hash": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+    "missing_behavior": "No NaN or infinity. Missing text uses explicit missing indicators and zero similarities; absent retrieval ranks use rank=0, paired missing indicators, and score=0.",
+    "ordered_contract": [
+      {
+        "dtype": "bool",
+        "family": "missingness",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "candidate_address_missing",
+        "position": 0,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "source_metadata",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "candidate_source_s3",
+        "position": 1,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "interpretable_interaction",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "cross_script_name",
+        "position": 2,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_exact",
+        "position": 3,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_levenshtein",
+        "position": 4,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_jaro_winkler",
+        "position": 5,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_token_sort",
+        "position": 6,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_token_set",
+        "position": 7,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_token_jaccard",
+        "position": 8,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_char3_jaccard",
+        "position": 9,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_length_ratio",
+        "position": 10,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "uint16",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_token_count_difference",
+        "position": 11,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_first_token_exact",
+        "position": 12,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "transliterated_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "transliterated_name_exact",
+        "position": 13,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "transliterated_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "transliterated_name_levenshtein",
+        "position": 14,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "transliterated_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "transliterated_name_token_set",
+        "position": 15,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "legal_suffix_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "suffix_name_exact",
+        "position": 16,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "legal_suffix_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "suffix_name_levenshtein",
+        "position": 17,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "legal_suffix_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "suffix_name_token_set",
+        "position": 18,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_exact",
+        "position": 19,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_levenshtein",
+        "position": 20,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_jaro_winkler",
+        "position": 21,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_token_sort",
+        "position": 22,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_token_set",
+        "position": 23,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_token_jaccard",
+        "position": 24,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_char3_jaccard",
+        "position": 25,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_length_ratio",
+        "position": 26,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "uint16",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_token_count_difference",
+        "position": 27,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "address_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_first_token_exact",
+        "position": 28,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "both_addresses_have_numbers",
+        "position": 29,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "one_address_missing_numbers",
+        "position": 30,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_number_set_exact",
+        "position": 31,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_first_number_exact",
+        "position": 32,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_number_jaccard",
+        "position": 33,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "uint8",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_conflicting_number_count",
+        "position": 34,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "uint8",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "address_number_count_difference",
+        "position": 35,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "transliterated_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "transliteration_levenshtein_gain",
+        "position": 36,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "float32",
+        "family": "legal_suffix_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "suffix_levenshtein_gain",
+        "position": 37,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "uint16",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 means not retrieved in the saved top-250 signal; paired missing indicator is explicit.",
+        "name": "baseline_name_rank",
+        "position": 38,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "bool",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "baseline_name_rank_missing",
+        "position": 39,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 when rank is missing; consult the paired rank-missing indicator.",
+        "name": "baseline_name_score",
+        "position": 40,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "uint16",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 means not retrieved in the saved top-250 signal; paired missing indicator is explicit.",
+        "name": "baseline_address_rank",
+        "position": 41,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "bool",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "baseline_address_rank_missing",
+        "position": 42,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 when rank is missing; consult the paired rank-missing indicator.",
+        "name": "baseline_address_score",
+        "position": 43,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "uint16",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 means not retrieved in the saved top-250 signal; paired missing indicator is explicit.",
+        "name": "transliterated_name_rank",
+        "position": 44,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "bool",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "transliterated_name_rank_missing",
+        "position": 45,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 when rank is missing; consult the paired rank-missing indicator.",
+        "name": "transliterated_name_score",
+        "position": 46,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "uint16",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 means not retrieved in the saved top-250 signal; paired missing indicator is explicit.",
+        "name": "number_address_rank",
+        "position": 47,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "bool",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "number_address_rank_missing",
+        "position": 48,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 when rank is missing; consult the paired rank-missing indicator.",
+        "name": "number_address_score",
+        "position": 49,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "uint16",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 means not retrieved in the saved top-250 signal; paired missing indicator is explicit.",
+        "name": "suffix_name_rank",
+        "position": 50,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "bool",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "suffix_name_rank_missing",
+        "position": 51,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 when rank is missing; consult the paired rank-missing indicator.",
+        "name": "suffix_name_score",
+        "position": 52,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "uint8",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "retrieval_signal_count_top100",
+        "position": 53,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "uint16",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 means not retrieved in the saved top-250 signal; paired missing indicator is explicit.",
+        "name": "retrieval_best_rank",
+        "position": 54,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "retrieval_mean_rank_present",
+        "position": 55,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "0 when rank is missing; consult the paired rank-missing indicator.",
+        "name": "retrieval_best_score",
+        "position": 56,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "retrieval_rrf_score_top100",
+        "position": 57,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "uint16",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "frozen_candidate_position",
+        "position": 58,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "bool",
+        "family": "retrieval_evidence",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "task2_baseline_member",
+        "position": 59,
+        "requires_fitted_retrieval_state": true
+      },
+      {
+        "dtype": "float32",
+        "family": "baseline_name_similarity",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "name_address_similarity_product",
+        "position": 60,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "interpretable_interaction",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "strong_name_and_address",
+        "position": 61,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "interpretable_interaction",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "legal_suffix_rescue",
+        "position": 62,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "address_number_structure",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "strong_address_and_number",
+        "position": 63,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "bool",
+        "family": "interpretable_interaction",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "high_name_numeric_conflict",
+        "position": 64,
+        "requires_fitted_retrieval_state": false
+      },
+      {
+        "dtype": "uint8",
+        "family": "interpretable_interaction",
+        "missing_convention": "No NaN/inf; absence is represented by explicit indicators or zero similarity.",
+        "name": "independent_strong_signal_count",
+        "position": 65,
+        "requires_fitted_retrieval_state": false
+      }
+    ]
+  },
+  "frozen_artifact_hashes": {
+    "task2_5_checkpoint": "7cbe575b7b5766860f4cd36105b09e9dff130443898ca178688d502250526ceb",
+    "task2_5_code": "c5e8c61b1754a483834d48d36927d78bb03803c4d70b3a9bf4dd03f543bb5660",
+    "task2_5_decision": "7d119628fcb630cb461272db9cb67a2c3bee510aba5560a4fcb5ac016e80183d",
+    "task2_5_manifest": "040c0118afc104e8a08aaf098c709d2b7b2cec9e4792ea2285a1dd1b6f2e3a83",
+    "task2_code": "3b9aa38701ec96fb838201747d0be6d40dca5645881b3245ae98a0c3ef47895c",
+    "task3_audit": "5ded965b5a22b705058b166e61687d4461cfb2963e30dbc03654535f4249f5ea",
+    "task3_candidates": "0eb033a43a3082cfd842c28c046dfcfd4391e02294d83f4ecbfaef5293a839d4",
+    "task3_code": "469bd02f3c444cd06f30c9dd0b096e118efa086ee2d859ebd700c2ce109ec371",
+    "task3_manifest": "a69945d120a299481ff716906f797d9863ef850574137bf2b878997131870891",
+    "task3_pairs": "52779e8f186fbe7c1a139adea2a203a82768471b10df97407661e5c97bd2fc50",
+    "task3_schema": "1553cd0e5bedb6291b1102906eeeacc507f7e27f9d71b89dbdcf18a314fb96ff",
+    "task3_split": "0e9be5210a75a7f069e1a35f6613ac4493a74bdf8762f4c8ac0ce0c81243a49d",
+    "task4a_code": "8eaab7abe4d0d62c8d9753dff723361fc1c4f8a26c25828236bed2737820276d",
+    "task4a_manifest": "f383af93d7b073e4d0f22b3c6c581547c8bce028636d6b3dba62931e4929ea87",
+    "task4a_model": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0",
+    "task4a_predictions": "68fc9cd14551fdabae0a0986e97a609e2dfbef0317a90b6ffdaadd843b0a5288",
+    "task4b_manifest": "66f3adbb2dcd326bc36ba3586377192f86dfcd56ee52fd4a27f7036c3ab3fa3b",
+    "task4b_policy": "b06c07a9b9ef8c2cccb7743d2417d9be19dd5f567dc81a683839eb18ff5191ef"
+  },
+  "full_scale_architecture": {
+    "batch_loop": [
+      "Read deterministic S1 batch.",
+      "Query five frozen retrieval signals and assemble at most 250 candidates per S1.",
+      "Lookup only required candidate text records from the normalized candidate store.",
+      "Compute the exact ordered 66-feature float32 matrix.",
+      "Score with the saved LightGBM and apply score >= 0.95.",
+      "Atomically write the batch checkpoint, release pair/features, and continue."
+    ],
+    "initialization": [
+      "Fit frozen TF-IDF/random-projection transforms from the deterministic training sample.",
+      "Build the five country-blocked FAISS retrieval signals without ground truth.",
+      "For production reuse, persist retrieval transforms/indexes and a bucketed normalized candidate-text store."
+    ],
+    "prohibited": [
+      "all-S1 candidate-pair materialization",
+      "all-S1 feature-matrix materialization",
+      "ground truth, label, match_group, split, or match-count inputs"
+    ]
+  },
+  "model": {
+    "family": "LightGBM binary classifier",
+    "feature_count": 66,
+    "ordered_feature_names": [
+      "candidate_address_missing",
+      "candidate_source_s3",
+      "cross_script_name",
+      "name_exact",
+      "name_levenshtein",
+      "name_jaro_winkler",
+      "name_token_sort",
+      "name_token_set",
+      "name_token_jaccard",
+      "name_char3_jaccard",
+      "name_length_ratio",
+      "name_token_count_difference",
+      "name_first_token_exact",
+      "transliterated_name_exact",
+      "transliterated_name_levenshtein",
+      "transliterated_name_token_set",
+      "suffix_name_exact",
+      "suffix_name_levenshtein",
+      "suffix_name_token_set",
+      "address_exact",
+      "address_levenshtein",
+      "address_jaro_winkler",
+      "address_token_sort",
+      "address_token_set",
+      "address_token_jaccard",
+      "address_char3_jaccard",
+      "address_length_ratio",
+      "address_token_count_difference",
+      "address_first_token_exact",
+      "both_addresses_have_numbers",
+      "one_address_missing_numbers",
+      "address_number_set_exact",
+      "address_first_number_exact",
+      "address_number_jaccard",
+      "address_conflicting_number_count",
+      "address_number_count_difference",
+      "transliteration_levenshtein_gain",
+      "suffix_levenshtein_gain",
+      "baseline_name_rank",
+      "baseline_name_rank_missing",
+      "baseline_name_score",
+      "baseline_address_rank",
+      "baseline_address_rank_missing",
+      "baseline_address_score",
+      "transliterated_name_rank",
+      "transliterated_name_rank_missing",
+      "transliterated_name_score",
+      "number_address_rank",
+      "number_address_rank_missing",
+      "number_address_score",
+      "suffix_name_rank",
+      "suffix_name_rank_missing",
+      "suffix_name_score",
+      "retrieval_signal_count_top100",
+      "retrieval_best_rank",
+      "retrieval_mean_rank_present",
+      "retrieval_best_score",
+      "retrieval_rrf_score_top100",
+      "frozen_candidate_position",
+      "task2_baseline_member",
+      "name_address_similarity_product",
+      "strong_name_and_address",
+      "legal_suffix_rescue",
+      "strong_address_and_number",
+      "high_name_numeric_conflict",
+      "independent_strong_signal_count"
+    ],
+    "path": "outputs/task4_outputs/task4a_lightgbm_model.txt",
+    "prediction_dtype": "float64",
+    "sha256": "2ff9d7f9a962f342e0409a0b1254d0471ff6db5537aca9621fe41e4454b0efc0"
+  },
+  "parity_tolerances": {
+    "candidate_ids_counts_order": "exact",
+    "float32_features": "absolute <= 1e-06 or relative <= 1e-06",
+    "integer_and_boolean_features": "exact",
+    "lightgbm_score_vs_saved_float32": "absolute <= 5e-08",
+    "retrieval_scores": "absolute <= 1e-06",
+    "threshold_decisions": "exact"
+  },
+  "schemas": {
+    "batch_input": [
+      {
+        "dtype": "string",
+        "name": "source1_entity_id"
+      },
+      {
+        "dtype": "string",
+        "name": "business_name",
+        "nullable": true
+      },
+      {
+        "dtype": "string",
+        "name": "business_address",
+        "nullable": true
+      },
+      {
+        "dtype": "string",
+        "name": "country"
+      }
+    ],
+    "future_final_prediction": {
+      "competition_submission_schema": "not established in existing project artifacts",
+      "minimum_columns": [
+        "source1_entity_id",
+        "candidate_entity_id",
+        "candidate_source",
+        "lightgbm_score",
+        "predicted_match"
+      ]
+    },
+    "pair_feature_matrix": {
+      "columns": [
+        "candidate_address_missing",
+        "candidate_source_s3",
+        "cross_script_name",
+        "name_exact",
+        "name_levenshtein",
+        "name_jaro_winkler",
+        "name_token_sort",
+        "name_token_set",
+        "name_token_jaccard",
+        "name_char3_jaccard",
+        "name_length_ratio",
+        "name_token_count_difference",
+        "name_first_token_exact",
+        "transliterated_name_exact",
+        "transliterated_name_levenshtein",
+        "transliterated_name_token_set",
+        "suffix_name_exact",
+        "suffix_name_levenshtein",
+        "suffix_name_token_set",
+        "address_exact",
+        "address_levenshtein",
+        "address_jaro_winkler",
+        "address_token_sort",
+        "address_token_set",
+        "address_token_jaccard",
+        "address_char3_jaccard",
+        "address_length_ratio",
+        "address_token_count_difference",
+        "address_first_token_exact",
+        "both_addresses_have_numbers",
+        "one_address_missing_numbers",
+        "address_number_set_exact",
+        "address_first_number_exact",
+        "address_number_jaccard",
+        "address_conflicting_number_count",
+        "address_number_count_difference",
+        "transliteration_levenshtein_gain",
+        "suffix_levenshtein_gain",
+        "baseline_name_rank",
+        "baseline_name_rank_missing",
+        "baseline_name_score",
+        "baseline_address_rank",
+        "baseline_address_rank_missing",
+        "baseline_address_score",
+        "transliterated_name_rank",
+        "transliterated_name_rank_missing",
+        "transliterated_name_score",
+        "number_address_rank",
+        "number_address_rank_missing",
+        "number_address_score",
+        "suffix_name_rank",
+        "suffix_name_rank_missing",
+        "suffix_name_score",
+        "retrieval_signal_count_top100",
+        "retrieval_best_rank",
+        "retrieval_mean_rank_present",
+        "retrieval_best_score",
+        "retrieval_rrf_score_top100",
+        "frozen_candidate_position",
+        "task2_baseline_member",
+        "name_address_similarity_product",
+        "strong_name_and_address",
+        "legal_suffix_rescue",
+        "strong_address_and_number",
+        "high_name_numeric_conflict",
+        "independent_strong_signal_count"
+      ],
+      "numeric_runtime_dtype": "float32",
+      "rows": "one row per frozen S1-candidate pair"
+    },
+    "prediction_checkpoint": [
+      {
+        "dtype": "string",
+        "name": "source1_entity_id"
+      },
+      {
+        "dtype": "string",
+        "name": "candidate_entity_id"
+      },
+      {
+        "dtype": "string[S2|S3]",
+        "name": "candidate_source"
+      },
+      {
+        "dtype": "float64",
+        "name": "lightgbm_score"
+      },
+      {
+        "dtype": "bool",
+        "name": "predicted_match"
+      },
+      {
+        "dtype": "uint16",
+        "name": "candidate_position"
+      },
+      {
+        "dtype": "string",
+        "name": "batch_id"
+      }
+    ]
+  },
+  "scope": "training-parity replay and smoke validation; no full/test inference"
+}

@@ -1,0 +1,23 @@
+stage,check,passed,compared_values,mismatch_count,maximum_absolute_difference,mean_absolute_difference,tolerance,detail
+candidate_retrieval,baseline_name_top250_ids,True,250000,0,0.0,0.0,exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,baseline_name_top250_scores,True,250000,0,0.0,0.0,absolute <= 1e-06; finite masks exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,baseline_address_top250_ids,True,250000,0,0.0,0.0,exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,baseline_address_top250_scores,True,250000,0,0.0,0.0,absolute <= 1e-06; finite masks exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,transliterated_name_top250_ids,True,250000,0,0.0,0.0,exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,transliterated_name_top250_scores,True,250000,0,0.0,0.0,absolute <= 1e-06; finite masks exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,number_address_top250_ids,True,250000,0,0.0,0.0,exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,number_address_top250_scores,True,250000,0,0.0,0.0,absolute <= 1e-06; finite masks exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,suffix_name_top250_ids,True,250000,0,0.0,0.0,exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_retrieval,suffix_name_top250_scores,True,250000,0,0.0,0.0,absolute <= 1e-06; finite masks exact,Raw S2/S3 index rebuild versus frozen Task 2.5 signal checkpoint.
+candidate_assembly,candidate_counts,True,1000,0,0.0,0.0,exact,Frozen cap-250 candidate count by S1.
+candidate_assembly,candidate_ids_and_order,True,249992,0,0.0,0.0,exact,Exact encoded candidate IDs and frozen ordering.
+reload_determinism,baseline_name_ids,True,250000,0,0.0,0.0,exact,
+reload_determinism,baseline_name_scores,True,250000,0,0.0,0.0,exact,
+reload_determinism,baseline_address_ids,True,250000,0,0.0,0.0,exact,
+reload_determinism,baseline_address_scores,True,250000,0,0.0,0.0,exact,
+reload_determinism,transliterated_name_ids,True,250000,0,0.0,0.0,exact,
+reload_determinism,transliterated_name_scores,True,250000,0,0.0,0.0,exact,
+reload_determinism,number_address_ids,True,250000,0,0.0,0.0,exact,
+reload_determinism,number_address_scores,True,250000,0,0.0,0.0,exact,
+reload_determinism,suffix_name_ids,True,250000,0,0.0,0.0,exact,
+reload_determinism,suffix_name_scores,True,250000,0,0.0,0.0,exact,

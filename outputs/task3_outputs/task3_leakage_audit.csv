@@ -1,0 +1,9 @@
+check,status,detail
+Ground truth used only for label and analysis metadata,PASS,label is the target; match_group is analysis-only and excluded from Task 4 features.
+Entity IDs excluded from predictive features,PASS,IDs are retained only for joins and auditing.
+No label-derived aggregate feature,PASS,"All pair features are deterministic text, numeric-structure, missingness, source, or frozen-retrieval transformations."
+Fitted-state features isolated,PASS,Only frozen Task 2.5 retrieval ranks/scores require fitted state; no new TF-IDF/IDF statistics were fit in Task 3.
+Inference availability,PASS,"Recommended features require only S1 text, candidate text, candidate source, and frozen retrieval outputs."
+Entity-level split,PASS,Split is assigned by source1_entity_id with fixed seed 42 and match-group stratification.
+Country feature treatment,PASS,country_exact is validation-only because country is already a lossless hard block and is constant in the candidate pairs.
+No classifier or threshold work,PASS,"Task 3 computes only pair features, descriptive statistics, audits, and split metadata."

@@ -1,0 +1,10 @@
+phase,runtime_seconds,current_rss_mb,process_peak_rss_mb,detail
+load_and_ground_truth_verification,1.2402747079999998,397.890625,397.890625,
+frozen_candidate_reconstruction,8.015839416,412.40625,456.34375,"2,499,947 pairs"
+entity_split,0.013206000000000273,420.5625,456.34375,
+entity_text_collection_and_normalization,41.389380124999995,1060.8125,1551.09375,"1,749,900 candidate records"
+pair_feature_generation,67.830295666,1899.0625,1970.234375,"2,499,947 rows; 147.6 MB"
+missed_positive_feature_generation,0.19864587499999686,1981.625,1984.390625,"1,033 rows"
+descriptive_feature_analysis,3.0508310000000023,2188.953125,2217.203125,
+hard_case_and_recovery_analysis,0.08555308300000775,2200.96875,2217.203125,
+audit_and_validation,0.05164704199999903,2220.953125,2220.953125,

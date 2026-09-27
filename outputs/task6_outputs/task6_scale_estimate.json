@@ -1,0 +1,22 @@
+{
+  "assumptions": [
+    "Linear extrapolation from the Task 6 1,000-S1 reload-only production smoke.",
+    "Same average candidate count, hardware, thread count, batch size, and storage throughput.",
+    "Persistent bundle and candidate text store are reused and excluded from per-run build time.",
+    "Projection is planning evidence, not a guarantee or a full-scale run."
+  ],
+  "estimated_total_disk_bytes": 16403940800,
+  "measured_reload_only_seconds": 32.65466195699876,
+  "measured_reload_only_smoke_entities": 1000,
+  "peak_rss_basis_mb": 1896.375,
+  "persistent_bundle_bytes": 3702625383,
+  "persistent_candidate_store_bytes": 3118899200,
+  "persistent_total_bytes": 6821524583,
+  "projected_candidate_pairs": 551687595,
+  "projected_checkpoint_bytes": 9582416217,
+  "projected_wall_hours_linear": 20.017498265168324,
+  "projected_wall_seconds_linear": 72062.99375460597,
+  "recommended_initial_s1_batch_size": 100,
+  "scope": "projection only; full-scale execution was not run",
+  "target_s1_entities": 2206821
+}

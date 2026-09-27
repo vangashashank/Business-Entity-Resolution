@@ -1,0 +1,5 @@
+dataset,shape_rows,shape_cols,columns
+S1,2206821,4,"entity_id,business_name,business_address,country"
+S2,5034616,4,"entity_id,business_name,business_address,country"
+S3,5285603,4,"entity_id,business_name,business_address,country"
+GT,2206821,2,"source1_entity_id,matched_entity_ids"

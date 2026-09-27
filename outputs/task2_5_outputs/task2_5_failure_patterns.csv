@@ -1,0 +1,9 @@
+failure_pattern,sampled_remaining_failures
+all_signal_ranks_beyond_100,45
+address_number_difference,36
+not_in_top250_any_signal,31
+very_different_transliterated_name,18
+cross_script_name,17
+missing_address,8
+legal_suffix_variation,3
+very_different_number_address,1

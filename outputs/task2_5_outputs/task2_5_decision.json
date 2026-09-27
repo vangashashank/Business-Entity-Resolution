@@ -1,0 +1,41 @@
+{
+  "average_candidates": 249.9947,
+  "candidate_budget": 250,
+  "complete_recall": 0.9159,
+  "link_recall": 0.9689649992489109,
+  "maximum_candidates": 250,
+  "median_candidates": 250.0,
+  "p95_candidates": 250.0,
+  "reason": "Selected because it improved link recall by at least 0.5 percentage points within a 250-candidate cap without degrading global complete recall, S3 recall, or 6+-match complete recall beyond the allowed tolerances.",
+  "recall_by_match_group": {
+    "1": {
+      "complete_recall": 0.9664,
+      "link_recall": 0.9664
+    },
+    "2": {
+      "complete_recall": 0.9408,
+      "link_recall": 0.9686
+    },
+    "3-5": {
+      "complete_recall": 0.9092,
+      "link_recall": 0.9713752333540759
+    },
+    "6+": {
+      "complete_recall": 0.8472,
+      "link_recall": 0.9680356811001672
+    }
+  },
+  "s2_link_recall": 0.9744066431182996,
+  "s3_link_recall": 0.9638441800793095,
+  "selected_configuration": "Combined baseline-preserving augmentation, cap=250",
+  "selection_rule_minimum_link_recall_gain": 0.005,
+  "signals": [
+    "baseline_name",
+    "baseline_address",
+    "transliterated_name",
+    "number_address",
+    "suffix_name"
+  ],
+  "task3_classifier_work_performed": false,
+  "test_data_used": false
+}

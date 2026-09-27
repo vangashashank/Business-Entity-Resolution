@@ -1,0 +1,41 @@
+configuration,address_availability,positive_links,retrieved_positive_links,link_recall
+"Existing all signals ranked, K=100",both_missing,0,0,
+"Existing all signals ranked, K=100",s1_missing_only,0,0,
+"Existing all signals ranked, K=100",true_candidate_missing_only,1435,1043,0.7268292682926829
+"Existing all signals ranked, K=100",neither_missing,31850,29383,0.9225431711145997
+"Existing name + address union, K=100",both_missing,0,0,
+"Existing name + address union, K=100",s1_missing_only,0,0,
+"Existing name + address union, K=100",true_candidate_missing_only,1435,1081,0.7533101045296168
+"Existing name + address union, K=100",neither_missing,31850,30049,0.9434536891679749
+Baseline + transliteration union,both_missing,0,0,
+Baseline + transliteration union,s1_missing_only,0,0,
+Baseline + transliteration union,true_candidate_missing_only,1435,1178,0.8209059233449477
+Baseline + transliteration union,neither_missing,31850,30373,0.9536263736263736
+Baseline + address-number union,both_missing,0,0,
+Baseline + address-number union,s1_missing_only,0,0,
+Baseline + address-number union,true_candidate_missing_only,1435,1081,0.7533101045296168
+Baseline + address-number union,neither_missing,31850,30950,0.9717425431711146
+Baseline + missing-address handling,both_missing,0,0,
+Baseline + missing-address handling,s1_missing_only,0,0,
+Baseline + missing-address handling,true_candidate_missing_only,1435,1081,0.7533101045296168
+Baseline + missing-address handling,neither_missing,31850,30049,0.9434536891679749
+Baseline + legal-suffix union,both_missing,0,0,
+Baseline + legal-suffix union,s1_missing_only,0,0,
+Baseline + legal-suffix union,true_candidate_missing_only,1435,1154,0.8041811846689896
+Baseline + legal-suffix union,neither_missing,31850,30285,0.9508634222919937
+Combined improved union,both_missing,0,0,
+Combined improved union,s1_missing_only,0,0,
+Combined improved union,true_candidate_missing_only,1435,1218,0.848780487804878
+Combined improved union,neither_missing,31850,31166,0.9785243328100471
+"Combined improved ranked, cap=100",both_missing,0,0,
+"Combined improved ranked, cap=100",s1_missing_only,0,0,
+"Combined improved ranked, cap=100",true_candidate_missing_only,1435,1132,0.7888501742160279
+"Combined improved ranked, cap=100",neither_missing,31850,30024,0.9426687598116169
+"Combined improved ranked, cap=200",both_missing,0,0,
+"Combined improved ranked, cap=200",s1_missing_only,0,0,
+"Combined improved ranked, cap=200",true_candidate_missing_only,1435,1189,0.8285714285714286
+"Combined improved ranked, cap=200",neither_missing,31850,30894,0.9699843014128728
+"Combined baseline-preserving augmentation, cap=250",both_missing,0,0,
+"Combined baseline-preserving augmentation, cap=250",s1_missing_only,0,0,
+"Combined baseline-preserving augmentation, cap=250",true_candidate_missing_only,1435,1192,0.8306620209059233
+"Combined baseline-preserving augmentation, cap=250",neither_missing,31850,31060,0.9751962323390895

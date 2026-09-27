@@ -1,0 +1,24 @@
+{
+  "average_candidates_per_s1_basis": 249.992,
+  "estimated_float32_feature_matrix_bytes_per_batch": 6600000,
+  "estimated_float32_feature_matrix_mib_per_batch": 6.29425048828125,
+  "fixed_retrieval_index_build_seconds": 1853.9,
+  "full_run_executed": false,
+  "measured_feature_model_write_seconds_per_s1": 0.014954128248000026,
+  "measured_retrieval_query_seconds_per_s1": 0.0027,
+  "nonlinear_caveats": [
+    "FAISS/model fitting and corpus indexing are fixed startup costs, not per-batch costs.",
+    "Smoke retrieval query timing is measured on 1,000 queries and may improve at larger batches.",
+    "A production run should persist the retrieval bundle and bucketed normalized candidate store; their one-time build/storage is not represented by the prediction-checkpoint estimate.",
+    "Disk compression ratio depends on score and identifier distributions at full scale."
+  ],
+  "peak_ram_basis_mb": 2679.2,
+  "projected_batch_count": 22069,
+  "projected_candidate_pairs": 551687595,
+  "projected_prediction_checkpoint_bytes": 9582416209,
+  "projected_prediction_checkpoint_gib": 8.924320534802973,
+  "projected_s1_entities": 2206821,
+  "projected_total_runtime_hours": 11.337055820661018,
+  "projected_total_runtime_seconds": 40813.400954379664,
+  "projection_basis": "training-scale S1 count; no test data accessed"
+}

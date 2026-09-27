@@ -1,0 +1,83 @@
+TASK 2.5 - CANDIDATE GENERATOR SELECTION
+
+Scope
+-----
+Training data only. The exact saved Task 2 evaluation set was reused.
+No pairwise classifier, threshold, calibration, test prediction, or submission was created.
+
+Ablation results
+----------------
+Existing all signals ranked, K=100: link recall=91.4105%, complete recall=80.2800%, avg candidates=100.00, p95=100, max=100
+Existing name + address union, K=100: link recall=93.5256%, complete recall=83.7900%, avg candidates=197.83, p95=200, max=200
+Baseline + transliteration union: link recall=94.7904%, complete recall=86.8200%, avg candidates=244.07, p95=284, max=300
+Baseline + address-number union: link recall=96.2325%, complete recall=89.7700%, avg candidates=272.53, p95=296, max=300
+Baseline + missing-address handling: link recall=93.5256%, complete recall=83.7900%, avg candidates=197.83, p95=200, max=200
+Baseline + legal-suffix union: link recall=94.4540%, complete recall=85.9200%, avg candidates=249.75, p95=290, max=300
+Combined improved union: link recall=97.2931%, complete recall=92.5400%, avg candidates=362.02, p95=435, max=497
+Combined improved ranked, cap=100: link recall=93.6037%, complete recall=85.4000%, avg candidates=100.00, p95=100, max=100
+Combined improved ranked, cap=200: link recall=96.3888%, complete recall=90.7800%, avg candidates=200.00, p95=200, max=200
+Combined baseline-preserving augmentation, cap=250: link recall=96.8965%, complete recall=91.5900%, avg candidates=249.99, p95=250, max=250
+
+Recovered Task 2 baseline misses
+--------------------------------
+Existing all signals ranked, K=100: recovered=6, lost=710, net=-704
+Baseline + transliteration union: recovered=421, lost=0, net=421
+Baseline + address-number union: recovered=901, lost=0, net=901
+Baseline + missing-address handling: recovered=0, lost=0, net=0
+Baseline + legal-suffix union: recovered=309, lost=0, net=309
+Combined improved union: recovered=1,254, lost=0, net=1,254
+Combined improved ranked, cap=100: recovered=681, lost=655, net=26
+Combined improved ranked, cap=200: recovered=1,126, lost=173, net=953
+Combined baseline-preserving augmentation, cap=250: recovered=1,122, lost=0, net=1,122
+
+Frozen candidate generator
+--------------------------
+Selected configuration: Combined baseline-preserving augmentation, cap=250
+Signals: baseline_name, baseline_address, transliterated_name, number_address, suffix_name
+Candidate budget: 250
+Link recall: 96.8965%
+Complete recall: 91.5900%
+Average candidates: 249.99
+Median candidates: 250.00
+P95 candidates: 250
+Maximum candidates: 250
+S2 link recall: 97.4407%
+S3 link recall: 96.3844%
+Reason: Selected because it improved link recall by at least 0.5 percentage points within a 250-candidate cap without degrading global complete recall, S3 recall, or 6+-match complete recall beyond the allowed tolerances.
+
+Selected recall by match-count group
+------------------------------------
+1: link recall=96.6400%, complete recall=96.6400%
+2: link recall=96.8600%, complete recall=94.0800%
+3-5: link recall=97.1375%, complete recall=90.9200%
+6+: link recall=96.8036%, complete recall=84.7200%
+
+Remaining failure patterns
+--------------------------
+all_signal_ranks_beyond_100: 45
+address_number_difference: 36
+not_in_top250_any_signal: 31
+very_different_transliterated_name: 18
+cross_script_name: 17
+missing_address: 8
+legal_suffix_variation: 3
+very_different_number_address: 1
+
+Runtime and memory
+------------------
+Total Task 2.5 runtime: 32.61 minutes
+Observed peak process RSS: 2666.3 MB
+baseline_name: build=282.1s, query=7.5s, estimated index=708.5 MB
+baseline_address: build=363.6s, query=6.3s, estimated index=685.0 MB
+transliterated_name: build=337.9s, query=7.3s, estimated index=708.5 MB
+suffix_name: build=257.9s, query=6.4s, estimated index=708.5 MB
+number_address: build=551.5s, query=6.9s, estimated index=685.0 MB
+
+Known limitations
+-----------------
+Transliteration is approximate and may not preserve all language-specific phonetics.
+Address-number normalization improves formatting tolerance but cannot resolve genuinely conflicting or missing numbers.
+Lexically unrelated aliases and records with both weak names and missing addresses may remain outside the candidate budget.
+The frozen choice is based on the fixed 10,000-entity training evaluation set and should be monitored during Task 3 validation.
+
+STOP: Task 2.5 ends with candidate-generator selection.

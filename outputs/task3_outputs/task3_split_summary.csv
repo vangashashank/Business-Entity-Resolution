@@ -1,0 +1,3 @@
+split,s1_entities,pairs,positive_pairs,negative_pairs,positive_rate,group_1_entities,group_2_entities,group_3_5_entities,group_6_plus_entities
+train,8000,1999962,25798,1974164,0.012899245085656628,2000,2000,2000,2000
+validation,2000,499985,6454,493531,0.012908387251617548,500,500,500,500

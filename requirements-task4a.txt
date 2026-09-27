@@ -1,0 +1,2 @@
+# macOS LightGBM wheels require: brew install libomp
+lightgbm==4.6.0

@@ -1,0 +1,41 @@
+configuration,match_group,entities,positive_links,retrieved_positive_links,link_recall,complete_entities,complete_recall
+"Existing all signals ranked, K=100",1,2500,2500,2274,0.9096,2274,0.9096
+"Existing all signals ranked, K=100",2,2500,5000,4571,0.9142,2126,0.8504
+"Existing all signals ranked, K=100",3-5,2500,9642,8859,0.918792781580585,1943,0.7772
+"Existing all signals ranked, K=100",6+,2500,16143,14722,0.9119742303165459,1685,0.674
+"Existing name + address union, K=100",1,2500,2500,2329,0.9316,2329,0.9316
+"Existing name + address union, K=100",2,2500,5000,4682,0.9364,2206,0.8824
+"Existing name + address union, K=100",3-5,2500,9642,9047,0.938290811035055,2034,0.8136
+"Existing name + address union, K=100",6+,2500,16143,15072,0.93365545437651,1810,0.724
+Baseline + transliteration union,1,2500,2500,2363,0.9452,2363,0.9452
+Baseline + transliteration union,2,2500,5000,4744,0.9488,2262,0.9048
+Baseline + transliteration union,3-5,2500,9642,9166,0.950632648828044,2126,0.8504
+Baseline + transliteration union,6+,2500,16143,15278,0.9464164033946603,1931,0.7724
+Baseline + address-number union,1,2500,2500,2398,0.9592,2398,0.9592
+Baseline + address-number union,2,2500,5000,4803,0.9606,2318,0.9272
+Baseline + address-number union,3-5,2500,9642,9317,0.9662933001451981,2232,0.8928
+Baseline + address-number union,6+,2500,16143,15513,0.9609737966920646,2029,0.8116
+Baseline + missing-address handling,1,2500,2500,2329,0.9316,2329,0.9316
+Baseline + missing-address handling,2,2500,5000,4682,0.9364,2206,0.8824
+Baseline + missing-address handling,3-5,2500,9642,9047,0.938290811035055,2034,0.8136
+Baseline + missing-address handling,6+,2500,16143,15072,0.93365545437651,1810,0.724
+Baseline + legal-suffix union,1,2500,2500,2357,0.9428,2357,0.9428
+Baseline + legal-suffix union,2,2500,5000,4728,0.9456,2244,0.8976
+Baseline + legal-suffix union,3-5,2500,9642,9129,0.9467952706907281,2091,0.8364
+Baseline + legal-suffix union,6+,2500,16143,15225,0.9431332466084371,1900,0.76
+Combined improved union,1,2500,2500,2423,0.9692,2423,0.9692
+Combined improved union,2,2500,5000,4854,0.9708,2361,0.9444
+Combined improved union,3-5,2500,9642,9410,0.975938601949803,2308,0.9232
+Combined improved union,6+,2500,16143,15697,0.97237192591216,2162,0.8648
+"Combined improved ranked, cap=100",1,2500,2500,2344,0.9376,2344,0.9376
+"Combined improved ranked, cap=100",2,2500,5000,4685,0.937,2227,0.8908
+"Combined improved ranked, cap=100",3-5,2500,9642,9066,0.940261356565028,2086,0.8344
+"Combined improved ranked, cap=100",6+,2500,16143,15061,0.9329740444774824,1883,0.7532
+"Combined improved ranked, cap=200",1,2500,2500,2403,0.9612,2403,0.9612
+"Combined improved ranked, cap=200",2,2500,5000,4819,0.9638,2334,0.9336
+"Combined improved ranked, cap=200",3-5,2500,9642,9322,0.9668118647583489,2255,0.902
+"Combined improved ranked, cap=200",6+,2500,16143,15539,0.9625844019079477,2086,0.8344
+"Combined baseline-preserving augmentation, cap=250",1,2500,2500,2416,0.9664,2416,0.9664
+"Combined baseline-preserving augmentation, cap=250",2,2500,5000,4843,0.9686,2352,0.9408
+"Combined baseline-preserving augmentation, cap=250",3-5,2500,9642,9366,0.9713752333540759,2273,0.9092
+"Combined baseline-preserving augmentation, cap=250",6+,2500,16143,15627,0.9680356811001672,2118,0.8472

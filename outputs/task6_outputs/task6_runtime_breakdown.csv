@@ -1,0 +1,27 @@
+category,phase,runtime_seconds,current_rss_mb,process_peak_rss_mb,detail
+build,retrieval_training_sample_scan,15.146990415999998,739.71875,739.75,
+build,retrieval_transform_fit,24.94285525,1523.890625,1598.203125,
+build,retrieval_index_build_baseline_name,545.1389894160001,1302.90625,1896.375,
+build,retrieval_index_build_baseline_address,649.86712425,1520.328125,1896.375,
+build,retrieval_index_build_transliterated_name,636.5726372499998,1431.546875,1896.375,
+build,retrieval_index_build_number_address,864.24472575,1534.71875,1896.375,
+build,retrieval_index_build_suffix_name,541.104797208,1615.078125,1896.375,
+build,candidate_text_store_build,317.333886291,435.0,1896.375,
+reload-only,persisted_artifact_hash_validation,2.636218125,370.109375,486.578125,
+reload-only,parity_first_retrieval_bundle_load,0.7674830820000009,843.265625,843.265625,Deserialize ten fitted transform objects and ten FAISS indexes.
+reload-only,parity_first_retrieval_query,2.291996751000001,843.265625,843.265625,"Query five frozen signals for 1,000 S1 entities."
+reload-only,parity_second_retrieval_bundle_load,0.7011462060000007,798.890625,950.296875,Deserialize ten fitted transform objects and ten FAISS indexes.
+reload-only,parity_second_retrieval_query,2.303565331999998,798.890625,950.296875,"Query five frozen signals for 1,000 S1 entities."
+reload-only,candidate_store_initialize,6.2500000002074785e-06,798.984375,950.296875,
+reload-only,candidate_store_parity_lookup,1.1525298750000008,799.359375,950.296875,
+validation-reference,candidate_store_direct_raw_reference_scan,10.451998500000002,869.5625,950.296875,
+reload-only,candidate_store_parity_feature_generation,0.14448345799999984,873.546875,950.296875,
+reload-only,production_retrieval_bundle_load,0.7009577490000005,1012.90625,1082.109375,Deserialize ten fitted transform objects and ten FAISS indexes.
+reload-only,production_retrieval_query,2.3154998750000004,1012.90625,1082.109375,"Query five frozen signals for 1,000 S1 entities."
+reload-only,production_candidate_assembly,0.5491239169999957,1013.390625,1082.109375,
+reload-only,production_candidate_text_lookup,11.583203292,1017.125,1082.109375,
+reload-only,production_feature_model_checkpoint_total,0.004596958000000484,1018.796875,1082.109375,
+reload-only,production_feature_generation,5.787840750999749,1057.8125,1082.109375,Aggregate measured feature_seconds across persisted smoke checkpoints.
+reload-only,production_lightgbm_inference,9.009010832999593,1057.8125,1082.109375,Aggregate measured model_seconds across persisted smoke checkpoints.
+reload-only,production_checkpoint_write,0.07280116499941869,1057.8125,1082.109375,Aggregate measured write_seconds across persisted smoke checkpoints.
+reload-only,production_total_excluding_build,32.65466195699876,1057.8125,1082.109375,Hash validation through checkpoint write; excludes one-time bundle/store construction and parity-only work.

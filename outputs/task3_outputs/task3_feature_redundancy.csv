@@ -1,0 +1,16 @@
+feature_a,feature_b,spearman_correlation,absolute_correlation
+candidate_address_missing,both_addresses_present,-1.0,1.0
+candidate_name_non_ascii,cross_script_name,1.0,1.0
+task2_baseline_member,task2_5_augmentation_only,-1.0,1.0
+address_number_jaccard,address_shared_number_count,0.9905873354623825,0.9905873354623825
+name_token_jaccard,transliterated_name_token_jaccard,0.9863419729900386,0.9863419729900386
+address_number_set_exact,address_number_ordered_exact,0.9842320932791193,0.9842320932791193
+name_token_set,transliterated_name_token_set,0.9770405559432177,0.9770405559432177
+number_address_rank,number_address_rank_missing,-0.9756610821090235,0.9756610821090235
+number_address_rank_missing,number_address_score,-0.9756121880832076,0.9756121880832076
+name_first_token_exact,name_prefix4_exact,0.9626270875846935,0.9626270875846935
+suffix_name_rank,suffix_name_rank_missing,-0.961944879912235,0.961944879912235
+suffix_name_rank_missing,suffix_name_score,-0.9619309537324957,0.9619309537324957
+transliterated_name_rank,transliterated_name_rank_missing,-0.9551058299494573,0.9551058299494573
+transliterated_name_rank_missing,transliterated_name_score,-0.9550883612939813,0.9550883612939813
+name_length_ratio,name_length_difference,-0.9550441642881993,0.9550441642881993

@@ -1,0 +1,21 @@
+configuration,source,positive_links,retrieved_positive_links,link_recall
+"Existing all signals ranked, K=100",S2,16137,15097,0.9355518373923282
+"Existing all signals ranked, K=100",S3,17148,15329,0.8939234896197807
+"Existing name + address union, K=100",S2,16137,15369,0.9524075106897193
+"Existing name + address union, K=100",S3,17148,15761,0.9191159318871005
+Baseline + transliteration union,S2,16137,15501,0.9605874697899238
+Baseline + transliteration union,S3,17148,16050,0.9359692092372288
+Baseline + address-number union,S2,16137,15638,0.9690772758257421
+Baseline + address-number union,S3,17148,16393,0.9559715418707722
+Baseline + missing-address handling,S2,16137,15369,0.9524075106897193
+Baseline + missing-address handling,S3,17148,15761,0.9191159318871005
+Baseline + legal-suffix union,S2,16137,15466,0.9584185412406271
+Baseline + legal-suffix union,S3,17148,15973,0.9314788896664334
+Combined improved union,S2,16137,15769,0.9771952655388239
+Combined improved union,S3,17148,16615,0.9689176580359226
+"Combined improved ranked, cap=100",S2,16137,15267,0.9460866332031976
+"Combined improved ranked, cap=100",S3,17148,15889,0.9265803592255657
+"Combined improved ranked, cap=200",S2,16137,15649,0.9697589390840925
+"Combined improved ranked, cap=200",S3,17148,16434,0.9583624912526242
+"Combined baseline-preserving augmentation, cap=250",S2,16137,15724,0.9744066431182996
+"Combined baseline-preserving augmentation, cap=250",S3,17148,16528,0.9638441800793095

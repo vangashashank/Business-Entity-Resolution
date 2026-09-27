@@ -1,0 +1,59 @@
+{
+    "baseline_parity_passed": true,
+    "classifier_work_performed": false,
+    "evaluation_entities": 10000,
+    "evaluation_positive_links": 33285,
+    "observed_peak_rss_mb": 2666.28125,
+  "parameters": {
+    "baseline_search_k": 1000,
+    "max_features": 32768,
+    "new_signal_search_k": 250,
+    "nlist": 2048,
+    "nprobe": 64,
+    "pq_m": 64,
+    "projection_dim": 256
+  },
+  "random_state": 42,
+  "smoke_validation": {
+    "candidate_rows_tested": 40000,
+    "peak_rss_mb": 272.21875,
+    "retrieval_checks": {
+      "number_address": {
+        "features": 4096,
+        "records": 12000,
+        "self_retrieval_at_100": 1.0
+      },
+      "suffix_name": {
+        "features": 4096,
+        "records": 12000,
+        "self_retrieval_at_100": 1.0
+      },
+      "transliterated_name": {
+        "features": 4096,
+        "records": 12000,
+        "self_retrieval_at_100": 1.0
+      }
+    },
+    "runtime_seconds": 1.7495888329999993,
+    "status": "passed",
+    "training_only": true,
+    "transform_checks": {
+      "ordinal_normalization": true,
+      "separator_compaction": true,
+      "suffix_normalization": true,
+      "transliteration_ascii": true,
+      "transliteration_nonempty": true,
+      "zero_padding": true
+    }
+  },
+  "source_candidate_counts": {
+    "S2": 5034616,
+    "S3": 5285603
+  },
+    "submission_created": false,
+  "task2_eval_sha256": "f9379147e517b1032cf4199c5276a979465c70f501fb5c870a64ac12f7851e27",
+  "test_data_used": false,
+    "test_predictions_created": false,
+    "total_runtime_seconds": 1956.6,
+  "training_only": true
+}
